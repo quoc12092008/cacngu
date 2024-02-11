@@ -1,7 +1,6 @@
 local Players = game:GetService("Players")
-
-game.Players.PlayerAdded:Connect(function()
-	wait(30)
-	print(test)
-	game.Players:WaitForChild("LocalPlayer"):Kick("ditme sw hub thai dog")
+Players.PlayerAdded:Connect(function(Player)
+	task.wait(1)
+	print(30)
+	Player:Kick("hub rac sw bi ket lever")
 end)
