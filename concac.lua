@@ -1,3 +1,5 @@
+local Players = game:GetService("Players")
+
 game.Players.PlayerAdded:Connect(function()
 	wait(30)
 	print(test)
