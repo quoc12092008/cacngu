@@ -1,11 +1,5 @@
-local Players = game:GetService("Players")
+game.Players.PlayerAdded:Connect(function(player)
+local tinnhan ="concac sw oc cho vcl "
 
-Players.PlayerAdded:Connect(function(Player)
-	task.wait(10)
-	print(1)
-	task.wait(10)
-	print(2)
-	task.wait(10)
-	print(3)
-	Player:Kick("sw ngu bi ket lever")
-end)
+	player:kick(tinnhan)
+end
