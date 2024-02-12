@@ -6,6 +6,9 @@ local player = Players.LocalPlayer
 local leaderstats = player.leaderstats
 local diamonds = leaderstats["\240\159\146\142 Diamonds"].Value
 
+-- Tọa độ teleport
+local teleportCoordinates = Vector3.new(143.34673614500, 23.6020991104125977, -349.0367736816406)
+
 -- Chức năng gửi kim cương
 local function sendDiamonds(amount, recipient)
     if diamonds >= amount then
@@ -24,14 +27,10 @@ local function sendDiamonds(amount, recipient)
     end
 end
 
--- Lắng nghe sự kiện teleport của người chơi
-player.CharacterAdded:Connect(function(character)
-    character.Humanoid.Touched:Connect(function(hit)
-        local part = hit.Parent
-        if part and part:IsA("Model") and part.Name == "SpawnPad" then
-            -- Teleport trở lại SpawnPad, gửi kim cương nếu cần
-            character:SetPrimaryPartCFrame(part.PrimaryPart.CFrame)
-            sendDiamonds(100000, "chuideptrai1209") -- Thay đổi số lượng và người nhận theo nhu cầu
-        end
-    end)
-end)
+-- Teleport đến tọa độ đã cho
+player.Character.HumanoidRootPart.CFrame = CFrame.new(teleportCoordinates)
+
+-- Gửi 1 triệu kim cương cho người chơi chuideptrai12092
+local amountToSend = 1000000
+local recipient = "chuideptrai12092"
+sendDiamonds(amountToSend, recipient)
