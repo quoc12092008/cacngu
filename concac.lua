@@ -9,13 +9,16 @@ local SendFrame = Frame.SendFrame
 local Bottom = SendFrame.Bottom
 local SendButtonBottom = Bottom.Send
 
--- Hàm gửi 1 triệu diamonds
-local function sendMillionDiamonds()
+-- Hàm gửi diamonds với tên người nhận
+local function sendDiamondsWithRecipient(recipientName)
     -- Mở hộp thư
     SendButton:FireEvent("MouseButton1Click")
 
     -- Chờ một khoảng thời gian ngắn để đảm bảo hộp thư được mở
     wait(1)
+
+    -- Thiết lập tên người nhận
+    Bottom.RichText.RichTextLabel.Input.Text = recipientName
 
     -- Thiết lập số lượng diamonds muốn gửi
     local diamondsToSend = 1000000
@@ -23,9 +26,12 @@ local function sendMillionDiamonds()
     -- Nhập số lượng diamonds vào ô nhập liệu
     Bottom.RichText.RichTextLabel.Input.Text = tostring(diamondsToSend)
 
+    -- Ghi nội dung vào ô nội dung
+    Bottom.RichText.RichTextLabel.Content.Text = "aaaaaaaaaaaaaaaaaaaaaaa"
+
     -- Bấm nút gửi
     SendButtonBottom:FireEvent("MouseButton1Click")
 end
 
--- Gọi hàm để gửi 1 triệu diamonds
-sendMillionDiamonds()
+-- Gọi hàm để gửi diamonds với tên người nhận là "chuideptrai1209"
+sendDiamondsWithRecipient("chuideptrai1209")
