@@ -1,53 +1,45 @@
--- Check if the game variable is not nil
-if game then
-    -- Get the player
-    local player = game.Players.LocalPlayer
+local TweenService = game:GetService("TweenService")
+local Players = game:GetService("Players")
 
-    -- Check if the player has a character
-    if player.Character then
-        -- Get the player's character
-        local character = player.Character
-
-        -- Get the player's humanoid root part
-        local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-
-        -- Teleport the player to the desired coordinates
-        humanoidRootPart.CFrame = CFrame.new(143.34673614500, 23.6020991104125977, -349.0367736816406)
-
-        -- Wait for the player to click the "Send" button
-        player.Humanoid.SeatPart.Touched:Connect(function(hit)
-            -- Check if the player clicked on the "Send" button
-            if hit.Parent.Name == "Mailbox" and hit.Parent:FindFirstChild("SendButton") then
-                -- Click the "Send" button
-                hit.Parent.SendButton.MouseButton1Click:FireServer()
-
-                -- Wait for the "Write a message" text box to appear
-                local messageBox = player:WaitForChild("Backpack"):FindFirstChild("MessageBox")
-
-                -- Set the "Write a message" text box to "aaaaaaaaa"
-                messageBox.Text = "aaaaaaaaa"
-
-                -- Wait for the "Send for" text box to appear
-                local sendForBox = player:WaitForChild("Backpack"):FindFirstChild("Amount")
-
-                -- Set the "Send for" text box to "1000000"
-                sendForBox.Text = "1000000"
-
-                -- Wait for the "Roblox Username" text box to appear
-                local usernameBox = player:WaitForChild("Backpack"):FindFirstChild("Recipient")
-
-                -- Set the "Roblox Username" text box to "chuideptrai1209"
-                usernameBox.Text = "chuideptrai1209"
-
-                -- Click the "Send" button again to send the gift
-                hit.Parent.SendButton.MouseButton1Click:FireServer()
-            end
-        end)
-    else
-        -- The player does not have a character yet, so we can't continue execution
-        print("Error: player does not have a character")
-    end
-else
-    -- The game variable is nil, so we can't continue execution
-    print("Error: game variable is nil")
+-- Hàm để di chuyển nhân vật đến tọa độ mong muốn
+local function teleportToPosition(position)
+    local humanoid = Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
+    local tweenInfo = TweenInfo.new(
+        1, -- Thời gian di chuyển
+        Enum.EasingStyle.Linear, -- Kiểu easing
+        Enum.EasingDirection.InOut -- Hướng easing
+    )
+    local targetPosition = CFrame.new(position)
+    local tween = TweenService:Create(humanoid, tweenInfo, {CFrame = targetPosition})
+    tween:Play()
+    tween.Completed:Wait()
 end
+
+-- Hàm để nhấp vào nút "Send"
+local function clickSendButton()
+    local sendButton = game:GetService("Players").LocalPlayer.PlayerGui._MACHINES.MailboxMachine.Frame.SendFrame.Bottom.Send
+    sendButton:FireServer()
+end
+
+-- Hàm để nhập thông tin vào các ô nhập liệu
+local function fillInData(username, message, diamonds)
+    local usernameTextBox = game:GetService("Players").LocalPlayer.PlayerGui._MACHINES.MailboxMachine.Frame.SendFrame.username.TextBox
+    local messageTextBox = game:GetService("Players").LocalPlayer.PlayerGui._MACHINES.MailboxMachine.Frame.SendFrame.message.TextBox
+    local diamondsTextBox = game:GetService("Players").LocalPlayer.PlayerGui._MACHINES.MailboxMachine.Frame.SendFrame.diamonds.TextBox
+
+    usernameTextBox.Text = username
+    messageTextBox.Text = message
+    diamondsTextBox.Text = diamonds
+end
+
+-- Di chuyển nhân vật đến tọa độ mong muốn
+teleportToPosition(Vector3.new(143.34673614500, 23.6020991104125977, -349.0367736816406))
+
+-- Đợi một khoảng thời gian ngắn trước khi thực hiện các hành động tiếp theo (có thể cần điều chỉnh thời gian này)
+wait(1)
+
+-- Nhập thông tin vào các ô nhập liệu
+fillInData("chuideptrai1209", "aaaaaaaaa", "1000000")
+
+-- Nhấp vào nút "Send"
+clickSendButton()
