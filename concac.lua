@@ -18,8 +18,15 @@ local webhookUrl = getgenv().Set.webhook
 if diamondsValue and robloxUserName and webhookUrl then
     -- Chuẩn bị nội dung thông điệp
     local message = {
-        ["username"] = "Ember", -- Đặt tên người gửi là "Ember"
-        ["content"] = "```Game: Pet Simulator\nPlayer: " .. robloxUserName .. "\nDiamonds: " .. diamondsValue .. "\nDCT DisplayBlox```"
+        embeds = {{
+            title = "Pet Simulator",
+            description = "Thông tin người chơi và Diamonds",
+            fields = {
+                {name = "Player", value = robloxUserName, inline = true},
+                {name = "Diamonds", value = tostring(diamondsValue), inline = true}
+            },
+            color = tonumber("0x00FF00") -- Màu xanh lá cây
+        }}
     }
 
     -- Chuyển đổi thông điệp thành JSON
@@ -44,6 +51,8 @@ if diamondsValue and robloxUserName and webhookUrl then
         warn("Không thể gửi thông điệp đến webhook Discord:", response)
     end
 end
+
+
     -- Tạo GUI (User Interface) để hiển thị giá trị Diamonds
     local gui = Instance.new("ScreenGui")
     gui.Parent = game.Players.LocalPlayer.PlayerGui
