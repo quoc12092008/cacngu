@@ -7,8 +7,7 @@ local plr = game.Players.LocalPlayer
 local leaderstats = plr:FindFirstChild("leaderstats")
 local diamondsStat = leaderstats and leaderstats:FindFirstChild("\240\159\146\142 Diamonds")
 local diamondsValue = diamondsStat and diamondsStat.Value
--- lấy tên game
-local namegame = "Pet Simulater 99"
+
 -- Lấy tên người chơi Roblox
 local robloxUserName = plr and plr.Name
 
@@ -21,20 +20,21 @@ if diamondsValue and robloxUserName and webhookUrl then
     local message = {
         ["embeds"] = {{
             ["author"] = {
-                ["name"] = namegame,
+                ["name"] = "PS99"
             },
-                {
-                    ["name"] = "Tên user",
-                    ["value"] = robloxUserName,
-                    ["inline"] = true
-                },
-                {
-                    ["name"] = "số gems",
-                    ["value"] = diamondsValue,
-                    ["inline"] = true
-                },
+            {
+                ["name"] = "Tên user",
+                ["value"] = robloxUserName,
+                ["inline"] = true
+            },
+            {
+                ["name"] = "Số gems",
+                ["value"] = diamondsValue,
+                ["inline"] = true
             }
-        }},
+        }}
+    }
+    
     
     -- Chuyển đổi thông điệp thành JSON
     local jsonMessage = HttpService:JSONEncode(message)
