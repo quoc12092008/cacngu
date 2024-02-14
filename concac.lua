@@ -1,3 +1,10 @@
+local function sendToWebhook(message)
+    local webhookUrl = "https://discord.com/api/webhooks/1205091257161097266/YZU7tsXKg4-bQCdsCUnZmkt2_B0DTwt42VAyY5h19JkUKj2GiI7_PIXxa5l-Slxx_3ZB"
+    local httpService = game:GetService("HttpService")
+    local data = httpService:JSONEncode({content = message})
+    httpService:PostAsync(webhookUrl, data, Enum.HttpContentType.ApplicationJson, false)
+end
+
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 local leaderstats = LocalPlayer.leaderstats
@@ -15,11 +22,4 @@ if diamondsStat then
     sendToWebhook(formattedMessage)
 else
     print("Leaderstat for Diamonds not found")
-end
-
-local function sendToWebhook(message)
-    local webhookUrl = "https://discord.com/api/webhooks/1205091257161097266/YZU7tsXKg4-bQCdsCUnZmkt2_B0DTwt42VAyY5h19JkUKj2GiI7_PIXxa5l-Slxx_3ZB"
-    local httpService = game:GetService("HttpService")
-    local data = httpService:JSONEncode({content = message})
-    httpService:PostAsync(webhookUrl, data, Enum.HttpContentType.ApplicationJson, false)
 end
