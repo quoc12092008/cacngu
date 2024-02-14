@@ -1,30 +1,43 @@
 local HttpService = game:GetService("HttpService")
 local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 
--- Lấy thông tin người chơi và số kim cương từ các đối tượng local đã đề cập
-local player = Players.chuideptrai1209
-local playerName = player.Name
-local diamondsStat = player.leaderstats["\240\159\146\142 Diamonds"]
-local diamondsValue = diamondsStat and diamondsStat.Value or "N/A"
+if LocalPlayer then
+    local leaderstats = LocalPlayer.leaderstats
+    local diamondsStat = leaderstats and leaderstats["\240\159\146\142 Diamonds"]
 
--- Định dạng thông điệp
-local message = "Tiêu đề: Bananawebhook\nTên người dùng: " .. playerName .. "\nSố Diamonds: " .. diamondsValue
+    if diamondsStat then
+        local playerName = LocalPlayer.Name
+        local diamondsValue = diamondsStat.Value
+        local message = "Name player: " .. playerName .. " Diamonds: " .. diamondsValue
 
--- Định dạng thông điệp trong JSON
-local postData = HttpService:JSONEncode({
-    content = message
-})
+        local postData = HttpService:JSONEncode({
+            content = message
+        })
 
--- URL của webhook Discord
-local webhookUrl = "https://discord.com/api/webhooks/1205091257161097266/YZU7tsXKg4-bQCdsCUnZmkt2_B0DTwt42VAyY5h19JkUKj2GiI7_PIXxa5l-Slxx_3ZB"
+        local webhookUrl = "https://discord.com/api/webhooks/1206565759321378866/-M0Al386z4YDubc9Spb60HTHYD-enh_6sH-oqRfe73jA4W2eaH0RhoX-kEen1wH2NNNi"
 
--- Gửi yêu cầu POST đến webhook
-local success, response = pcall(function()
-    return HttpService:PostAsync(webhookUrl, postData, Enum.HttpContentType.ApplicationJson, false)
-end)
+        local Request = (syn and syn.request) or (http and http.request) or http_request or (fluxus and fluxus.request) or request
 
-if success then
-    print("Webhook response: " .. response)
-else
-    warn("Failed to send webhook: " .. tostring(response))
+        if Request then
+            local success, response = pcall(function()
+                return Request({
+                    Url = webhookUrl,
+                    Method = "POST",
+                    Headers = {
+                        ["Content-Type"] = "application/json"
+                    },
+                    Body = postData
+                })
+            end)
+
+            if success then
+                print("Webhook response: " .. response)
+            else
+                warn("Failed to send webhook: " .. tostring(response))
+            end
+        else
+            warn("Request function not found")
+        end
+    end
 end
