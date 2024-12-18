@@ -1,14 +1,18 @@
 local Players = game:GetService("Players")
 local HttpService = game:GetService("HttpService")
+
+-- Đảm bảo game đã tải xong và LocalPlayer tồn tại
+repeat wait() until game:IsLoaded() and Players.LocalPlayer
 local player = Players.LocalPlayer
 
 -- Hàm lấy số Candy Cane
 local function getCandyCaneAmount()
-    local lobbyGui = player.PlayerGui:FindFirstChild("Lobby") and player.PlayerGui.Lobby:FindFirstChild("CurrenciesFrame")
+    local lobbyGui = player:WaitForChild("PlayerGui"):FindFirstChild("Lobby")
+        and player.PlayerGui.Lobby:FindFirstChild("CurrenciesFrame")
     
     if lobbyGui then
-        local candyCaneAmount = lobbyGui:FindFirstChild("CandyCaneAmount") 
-            and lobbyGui.CandyCaneAmount:FindFirstChild("CurrencyLayout") 
+        local candyCaneAmount = lobbyGui:FindFirstChild("CandyCaneAmount")
+            and lobbyGui.CandyCaneAmount:FindFirstChild("CurrencyLayout")
             and lobbyGui.CandyCaneAmount.CurrencyLayout:FindFirstChild("AmountLabel")
         
         if candyCaneAmount then
@@ -67,16 +71,10 @@ end
 
 -- Hàm gửi thông tin tracking
 local function sendTrackData(webhookUrl)
-    -- Lấy thông tin người chơi
     local playerInfo = getPlayerInfo()
-    
-    -- Lấy thống kê từ leaderstats
     local leaderStats = getLeaderStats()
-    
-    -- Lấy số Candy Cane
     local candyCane = getCandyCaneAmount()
     
-    -- Tạo bảng dữ liệu
     local data = {
         username = playerInfo.username,
         userId = playerInfo.userId,
@@ -90,7 +88,6 @@ local function sendTrackData(webhookUrl)
         candyCane = candyCane
     }
     
-    -- Thực hiện gửi request
     local success, result = pcall(function()
         return request({
             Url = webhookUrl,
@@ -102,7 +99,6 @@ local function sendTrackData(webhookUrl)
         })
     end)
     
-    -- Kiểm tra và log kết quả
     if success then
         print(string.format("Tracked: %s (UserID: %d) - Candy Cane: %s", 
             playerInfo.username, playerInfo.userId, candyCane))
@@ -115,19 +111,15 @@ end
 
 -- Hàm chính
 local function main()
-    -- Đảm bảo game đã tải xong
     repeat wait() until game:IsLoaded()
     
-    -- Webhook URL có thể được thay đổi từ global
     local webhookUrl = getgenv().Set and getgenv().Set.WEBHOOK_URL or 
         "https://055b-171-243-48-226.ngrok-free.app/webhook"
     
-    -- Thử gửi tracking
     local success = sendTrackData(webhookUrl)
     
-    -- Nếu gửi thất bại, có thể thêm logic thử lại
     if not success then
-        wait(5)  -- Chờ 5 giây
+        wait(5)
         sendTrackData(webhookUrl)
     end
 end
