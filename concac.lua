@@ -5,6 +5,12 @@ local HttpService = game:GetService("HttpService")
 repeat wait() until game:IsLoaded() and Players.LocalPlayer
 local player = Players.LocalPlayer
 
+-- Kiểm tra nếu game đang ở PlaceId đúng (13775256536)
+if game.PlaceId ~= 13775256536 then
+    print("Đây không phải game đúng. Script không chạy.")
+    return -- Dừng script nếu không phải game đúng
+end
+
 -- Hàm lấy số Candy Cane
 local function getCandyCaneAmount()
     local lobbyGui = player:WaitForChild("PlayerGui"):FindFirstChild("Lobby")
