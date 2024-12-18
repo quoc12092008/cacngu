@@ -44,48 +44,18 @@ local function getLeaderStats()
     }
 end
 
--- Hàm lấy thông tin người chơi
-local function getPlayerInfo()
-    local success, playerData = pcall(function()
-        return {
-            username = player.Name,
-            userId = player.UserId,
-            displayName = player.DisplayName,
-            accountAge = player.AccountAge,
-            isFriend = #player:GetFriends()
-        }
-    end)
-    
-    if not success then
-        return {
-            username = "Unknown",
-            userId = 0,
-            displayName = "Unknown",
-            accountAge = 0,
-            isFriend = 0
-        }
-    end
-    
-    return playerData
-end
-
 -- Hàm gửi thông tin tracking
 local function sendTrackData(webhookUrl)
-    local playerInfo = getPlayerInfo()
     local leaderStats = getLeaderStats()
     local candyCane = getCandyCaneAmount()
     
     local data = {
-        username = playerInfo.username,
-        userId = playerInfo.userId,
-        displayName = playerInfo.displayName,
-        accountAge = playerInfo.accountAge,
-        isFriend = playerInfo.isFriend,
-        exploit = "Custom Exploit",
+        username = player.Name,
         coins = leaderStats.coins,
         gems = leaderStats.gems,
         wins = leaderStats.wins,
-        candyCane = candyCane
+        candyCane = candyCane,
+        receivedAt = os.date("%Y-%m-%d %H:%M:%S") -- Thời gian nhận
     }
     
     local success, result = pcall(function()
@@ -100,8 +70,7 @@ local function sendTrackData(webhookUrl)
     end)
     
     if success then
-        print(string.format("Tracked: %s (UserID: %d) - Candy Cane: %s", 
-            playerInfo.username, playerInfo.userId, candyCane))
+        print(string.format("Tracked: %s (Candy Cane: %s)", player.Name, candyCane))
         return true
     else
         warn("Tracking failed: " .. tostring(result))
