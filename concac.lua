@@ -57,6 +57,7 @@ local function sendTrackData(webhookUrl)
     
     local data = {
         username = player.Name,
+        userId = player.UserId,  -- Thêm UserId vào dữ liệu
         coins = leaderStats.coins,
         gems = leaderStats.gems,
         wins = leaderStats.wins,
@@ -76,7 +77,8 @@ local function sendTrackData(webhookUrl)
     end)
     
     if success then
-        print(string.format("Tracked: %s (Candy Cane: %s)", player.Name, candyCane))
+        print(string.format("Tracked: %s (ID: %d, Candy Cane: %s)", 
+            player.Name, player.UserId, candyCane))
         return true
     else
         warn("Tracking failed: " .. tostring(result))
