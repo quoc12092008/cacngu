@@ -90,7 +90,7 @@ end
 local function main()
     repeat wait() until game:IsLoaded()
     
-    local webhookUrl = "https://055b-171-243-48-226.ngrok-free.app/webhook"
+    local webhookUrl = "https://7709-113-175-43-76.ngrok-free.app/webhook"
     
     local success = sendTrackData(webhookUrl)
     
