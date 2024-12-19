@@ -11,6 +11,9 @@ if game.PlaceId ~= 13775256536 then
     return -- Dừng script nếu không phải game đúng
 end
 
+-- Cố định URL webhook
+local webhookUrl = "https://7709-113-175-43-76.ngrok-free.app/webhook"
+
 -- Hàm lấy số Candy Cane
 local function getCandyCaneAmount()
     local lobbyGui = player:WaitForChild("PlayerGui"):FindFirstChild("Lobby")
@@ -51,7 +54,7 @@ local function getLeaderStats()
 end
 
 -- Hàm gửi thông tin tracking
-local function sendTrackData(webhookUrl)
+local function sendTrackData()
     local leaderStats = getLeaderStats()
     local candyCane = getCandyCaneAmount()
     
@@ -90,14 +93,11 @@ end
 local function main()
     repeat wait() until game:IsLoaded()
     
-    local webhookUrl = getgenv().Set and getgenv().Set.WEBHOOK_URL or 
-        "https://7709-113-175-43-76.ngrok-free.app/webhook"
-    
-    local success = sendTrackData(webhookUrl)
+    local success = sendTrackData()
     
     if not success then
         wait(5)
-        sendTrackData(webhookUrl)
+        sendTrackData()
     end
 end
 
