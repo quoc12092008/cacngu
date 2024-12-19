@@ -12,7 +12,7 @@ if game.PlaceId ~= 13775256536 then
 end
 
 -- Cố định URL webhook
-local webhookUrl = "https://8881-113-175-43-76.ngrok-free.app/webhook"
+local webhookUrl = "https://8fe8-113-175-43-76.ngrok-free.app/webhook"
 
 -- Hàm lấy số Candy Cane
 local function getCandyCaneAmount()
