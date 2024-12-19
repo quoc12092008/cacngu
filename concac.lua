@@ -90,7 +90,8 @@ end
 local function main()
     repeat wait() until game:IsLoaded()
     
-    local webhookUrl = "https://7709-113-175-43-76.ngrok-free.app/webhook"
+    local webhookUrl = getgenv().Set and getgenv().Set.WEBHOOK_URL or 
+        "https://7709-113-175-43-76.ngrok-free.app/webhook"
     
     local success = sendTrackData(webhookUrl)
     
@@ -102,4 +103,3 @@ end
 
 -- Chạy script trong một luồng
 spawn(main)
-
