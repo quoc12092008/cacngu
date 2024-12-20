@@ -6,7 +6,7 @@ repeat wait() until game:IsLoaded() and Players.LocalPlayer
 local player = Players.LocalPlayer
 
 -- Cố định URL webhook
-local webhookUrl = "https://8fe8-113-175-43-76.ngrok-free.app/webhook"
+local webhookUrl = "https://6b83-113-175-43-76.ngrok-free.app/webhook"
 
 -- Hàm gửi thông tin tracking cơ bản
 local function sendBasicTrackData()
