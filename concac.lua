@@ -1,3 +1,4 @@
+-- Import các service cần thiết
 local Players = game:GetService("Players")
 local HttpService = game:GetService("HttpService")
 
@@ -128,3 +129,14 @@ end
 
 -- Chạy script trong một luồng
 spawn(main)
+
+-- Thêm chờ khi game tải xong
+repeat wait(5) until game:IsLoaded()
+
+-- Chạy vòng lặp cố định
+local max_iterations = 2
+
+for i = 1, max_iterations do
+    wait(10)
+    print(string.format("Iteration %d completed.", i))
+end
