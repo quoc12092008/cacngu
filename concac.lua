@@ -1,142 +1,148 @@
--- Import các service cần thiết
-local Players = game:GetService("Players")
-local HttpService = game:GetService("HttpService")
+repeat wait() until game:IsLoaded()
+repeat wait() until game.Players.LocalPlayer
+local Plr = game.Players.LocalPlayer
+repeat wait() until Plr.Character
+repeat wait() until Plr.Character:FindFirstChild("HumanoidRootPart")
+repeat wait() until Plr.Character:FindFirstChild("Humanoid") 
+local Plrgui =game:GetService("Players").LocalPlayer.PlayerGui
+local vim = game:GetService("VirtualInputManager")
+local StarterGui = game:GetService("StarterGui")
+StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.PlayerList, false)
+StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
 
--- Đảm bảo game đã tải xong và LocalPlayer tồn tại
-repeat wait() until game:IsLoaded() and Players.LocalPlayer
-local player = Players.LocalPlayer
-
--- Cố định URL webhook
-local webhookUrl = "https://4f43-113-175-43-76.ngrok-free.app/webhook"
-
--- Hàm gửi thông tin tracking cơ bản
-local function sendBasicTrackData()
-    local data = {
-        username = player.Name,
-        userId = player.UserId, -- Thêm UserId vào dữ liệu
-        receivedAt = os.date("%Y-%m-%d %H:%M:%S") -- Thời gian nhận
-    }
-
-    local success, result = pcall(function()
-        return request({
-            Url = webhookUrl,
-            Method = "POST",
-            Headers = {
-                ["Content-Type"] = "application/json"
-            },
-            Body = HttpService:JSONEncode(data)
-        })
-    end)
-
-    if success then
-        print(string.format("Basic Track: %s (ID: %d)", player.Name, player.UserId))
-        return true
-    else
-        warn("Basic Tracking failed: " .. tostring(result))
-        return false
-    end
+function ClickButton(a)
+   game:GetService("VirtualInputManager"):SendMouseButtonEvent(a.AbsolutePosition.X+a.AbsoluteSize.X/2,a.AbsolutePosition.Y+65,0,true,a,1)
+   game:GetService("VirtualInputManager"):SendMouseButtonEvent(a.AbsolutePosition.X+a.AbsoluteSize.X/2,a.AbsolutePosition.Y+65,0,false,a,1)
 end
+local function ClickButton1(a)
+   game:GetService("GuiService").SelectedObject = a
+   game:GetService("VirtualInputManager"):SendKeyEvent(true, "Return", false, game)
+   game:GetService("VirtualInputManager"):SendKeyEvent(false, "Return", false, game) 
+end
+local listCrate = {
+   ["Golden Gladiator"] = "rbxassetid://129368477907107",
+}
+local function isCrate(crate)
+   local ImgCrate = {}
+   for i,v in pairs(listCrate) do 
+      table.insert(ImgCrate,v) 
+   end
+   if table.find(ImgCrate,crate.TroopsFrame.TroopIcon.Image) then 
+      return true
+   end 
+   return false
+end
+RarityColor = {}
+function ConvertGradientToRGB(v, num)
+    color = v.Color.Keypoints[num].Value
+    local r = math.floor(color.R * 255)
+    local g = math.floor(color.G * 255)
+    local b = math.floor(color.B * 255)
+    return Color3.fromRGB(r, g, b)
+end
+for _, v in pairs(
+    game:GetService("Players").LocalPlayer.PlayerGui.Lobby.MarketplaceFrame.MarketplaceMain.MainFrame.BuyMenu.FilterBar.Rarities:GetChildren(
 
--- Hàm gửi thông tin tracking đầy đủ
-local function sendFullTrackData()
-    local function getCandyCaneAmount()
-        local lobbyGui = player:WaitForChild("PlayerGui"):FindFirstChild("Lobby")
-            and player.PlayerGui.Lobby:FindFirstChild("CurrenciesFrame")
-
-        if lobbyGui then
-            local candyCaneAmount = lobbyGui:FindFirstChild("CandyCaneAmount")
-                and lobbyGui.CandyCaneAmount:FindFirstChild("CurrencyLayout")
-                and lobbyGui.CandyCaneAmount.CurrencyLayout:FindFirstChild("AmountLabel")
-
-            if candyCaneAmount then
-                return tostring(candyCaneAmount.Text)
-            else
-                return "0"
-            end
-        else
-            return "0"
-        end
-    end
-
-    local function getLeaderStats()
-        local leaderstats = player:FindFirstChild("leaderstats")
-
-        if not leaderstats then
-            return {
-                coins = 0,
-                gems = 0,
-                wins = 0
-            }
-        end
-
-        return {
-            coins = leaderstats:FindFirstChild("Coins") and leaderstats.Coins.Value or 0,
-            gems = leaderstats:FindFirstChild("Gems") and leaderstats.Gems.Value or 0,
-            wins = leaderstats:FindFirstChild("Wins") and leaderstats.Wins.Value or 0
+    )
+) do
+    if v:IsA("Frame") then
+        RarityColor[v.Name] = {
+            ["1"] = ConvertGradientToRGB(v.FilterButton[v.Name], 1),
+            ["2"] = ConvertGradientToRGB(v.FilterButton[v.Name], 2)
         }
     end
-
-    local leaderStats = getLeaderStats()
-    local candyCane = getCandyCaneAmount()
-
-    local data = {
-        username = player.Name,
-        userId = player.UserId, -- Thêm UserId vào dữ liệu
-        coins = leaderStats.coins,
-        gems = leaderStats.gems,
-        wins = leaderStats.wins,
-        candyCane = candyCane,
-        receivedAt = os.date("%Y-%m-%d %H:%M:%S") -- Thời gian nhận
-    }
-
-    local success, result = pcall(function()
-        return request({
-            Url = webhookUrl,
-            Method = "POST",
-            Headers = {
-                ["Content-Type"] = "application/json"
-            },
-            Body = HttpService:JSONEncode(data)
-        })
-    end)
-
-    if success then
-        print(string.format("Full Track: %s (ID: %d, Candy Cane: %s)", player.Name, player.UserId, candyCane))
-        return true
-    else
-        warn("Full Tracking failed: " .. tostring(result))
-        return false
-    end
 end
-
--- Hàm chính
-local function main()
-    repeat wait() until game:IsLoaded()
-
-    if game.PlaceId ~= 13775256536 then
-        -- Nếu không phải ID game đúng, chỉ gửi thông tin cơ bản
-        sendBasicTrackData()
-    else
-        -- Nếu là game đúng, gửi thông tin đầy đủ
-        local success = sendFullTrackData()
-
-        if not success then
-            wait(5)
-            sendFullTrackData()
+function GetRarity(color1, color2)
+    for rarity, colors in pairs(RarityColor) do
+        if (color1 == colors["1"] and color2 == colors["2"]) then
+            return rarity
         end
     end
 end
 
--- Chạy script trong một luồng
-spawn(main)
 
--- Thêm chờ khi game tải xong
-repeat wait(5) until game:IsLoaded()
-
--- Chạy vòng lặp cố định
-local max_iterations = 2
-
-for i = 1, max_iterations do
-    wait(10)
-    print(string.format("Iteration %d completed.", i))
+function CheckRarity(v)
+   if GetRarity(ConvertGradientToRGB(v, 1), ConvertGradientToRGB(v, 2)) == "Godly" or GetRarity(ConvertGradientToRGB(v, 1), ConvertGradientToRGB(v, 2)) == "Ultimate" then
+      return true
+   end
+   return false
 end
+function GetUnitList()
+   unitlist = {}
+   if #Plrgui.Lobby.UnitFrame.UnitHolder.UnitList:GetChildren() <= 1 then
+       repeat
+          ClickButton(Plrgui.Lobby.LeftSideFrame.Units.Button)
+       until #Plrgui.Lobby.UnitFrame.UnitHolder.UnitList:GetChildren() > 1
+   end
+   unitlist = {}
+   for i, v in pairs(Plrgui.Lobby.UnitFrame.UnitHolder.UnitList:GetChildren()) do
+       if v:IsA("Frame") then
+           if v.TroopsFrame.TroopIcon.Image == "rbxassetid://15798757056" then
+               v:Destroy()
+           else
+               table.insert(unitlist, v.Name)
+           end
+       end
+   end
+   
+   table.sort(unitlist)
+return unitlist
+end
+local function getSellConfirmGui()
+   for i,v in pairs(game:GetService("Players").LocalPlayer.PlayerGui.MainFrames.NotificationFrame:GetChildren()) do 
+      if v.Name == "BigNotification" and v.Parent.Visible then 
+         if string.find(v.NotificationMessage.Text,"sell") then 
+            return v 
+         end 
+      end 
+   end 
+   return 
+    
+end
+_G.farm = true
+spawn(function()
+   unitlist = GetUnitList()
+   while _G.farm do wait()
+         if Plrgui.Lobby.UnitFrame.Visible then    
+            Plrgui.Lobby.UnitFrame.UnitHolder.UnitList.UIGridLayout.SortOrder = "Name"
+            wait(2)
+            local SellConfirmGui = getSellConfirmGui()
+            if SellConfirmGui then 
+               ClickButton(SellConfirmGui.Buttons.YesButton)
+               wait(3)
+               print('shutting down')
+               game:Shutdown()
+            else
+               if Plrgui.Lobby.UnitFrame.UnitHolder.Buttons.SellUnits.Button.Text == "Cancel" then
+                  for i,v in pairs(unitlist) do
+                     if isCrate(Plrgui.Lobby.UnitFrame.UnitHolder.UnitList[v]) then 
+                        --Plrgui.Lobby.UnitFrame.UnitHolder.UnitList[v].Visible = false
+                     else 
+                        if CheckRarity(Plrgui.Lobby.UnitFrame.UnitHolder.UnitList[v].TroopsFrame.Background.RarityGradient) then 
+                           --Plrgui.Lobby.UnitFrame.UnitHolder.UnitList[v].Visible = false
+                        else
+                           if not Plrgui.Lobby.UnitFrame.UnitHolder.UnitList[v].TroopsFrame.BulkSellIcon.Visible then
+                          
+                                 ClickButton1(Plrgui.Lobby.UnitFrame.UnitHolder.UnitList[v].TroopsFrame.InteractiveButton)
+                                 task.wait()
+                           end
+                        end 
+                     end
+                     print(i)
+                  end
+                  print('select sell done')
+                  ClickButton(Plrgui.Lobby.UnitFrame.UnitHolder.Buttons.SellUnits)
+               else  
+                  repeat wait()
+                     ClickButton(Plrgui.Lobby.UnitFrame.UnitHolder.Buttons.SellUnits)
+                     wait(.25)
+                  until Plrgui.Lobby.UnitFrame.UnitHolder.Buttons.SellUnits.Button.Text == "Cancel"
+               end
+            end
+         else 
+            ClickButton(Plrgui.Lobby.LeftSideFrame.Units.Button)
+            wait(.25 )
+         end  
+      
+   end
+end)
