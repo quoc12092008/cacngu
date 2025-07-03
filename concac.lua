@@ -84,18 +84,64 @@ function listPetsInPlot()
         end
     end
 
-    -- Send to Discord
     sendWebhook(finalLog)
 end
 
---=== SIMPLE GUI ===--
-local library = loadstring(game:HttpGet("https://pastebin.com/raw/Z6T6rEwT"))()
-local window = library:CreateWindow("Steal Brainrot Pet Viewer")
+--=== SIMPLE CUSTOM GUI ===--
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local PlayerGui = player:WaitForChild("PlayerGui")
 
-window:AddButton(":package: Quét Pet + Gửi Discord", function()
+-- Tạo ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MyCustomPetGUI"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = PlayerGui
+
+-- Frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 200, 0, 120)
+frame.Position = UDim2.new(0.5, -100, 0.5, -60)
+frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+-- Tiêu đề
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1,0,0,30)
+title.BackgroundTransparency = 1
+title.Text = "Pet Viewer"
+title.TextColor3 = Color3.fromRGB(255,255,255)
+title.Font = Enum.Font.SourceSansBold
+title.TextSize = 20
+title.Parent = frame
+
+-- Button Scan
+local scanButton = Instance.new("TextButton")
+scanButton.Size = UDim2.new(1, -20, 0, 35)
+scanButton.Position = UDim2.new(0,10,0,40)
+scanButton.Text = "📝 Quét Pet + Gửi"
+scanButton.TextColor3 = Color3.fromRGB(255,255,255)
+scanButton.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+scanButton.Font = Enum.Font.SourceSans
+scanButton.TextSize = 18
+scanButton.Parent = frame
+
+scanButton.MouseButton1Click:Connect(function()
     listPetsInPlot()
 end)
 
-window:AddButton(":x: Đóng GUI", function()
-    library:Destroy()
+-- Button Đóng
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(1, -20, 0, 30)
+closeButton.Position = UDim2.new(0,10,0,80)
+closeButton.Text = "❌ Đóng GUI"
+closeButton.TextColor3 = Color3.fromRGB(255,255,255)
+closeButton.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
+closeButton.Font = Enum.Font.SourceSans
+closeButton.TextSize = 18
+closeButton.Parent = frame
+
+closeButton.MouseButton1Click:Connect(function()
+    screenGui:Destroy()
 end)
