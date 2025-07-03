@@ -1,112 +1,101 @@
--- Webhook URL của bạn
-local WEBHOOK_URL = "https://discord.com/api/webhooks/1378811253765574767/t5lFqOqiM641yFiPN6_GJpiTlzzY3m2UIMIH7g9Jye_lfZUIyXkPQum5IiwPmRWbp7pe"
+--=== CONFIG ===--
+local webhookUrl = "https://discord.com/api/webhooks/1378811253765574767/t5lFqOqiM641yFiPN6_GJpiTlzzY3m2UIMIH7g9Jye_lfZUIyXkPQum5IiwPmRWbp7pe"
 
--- Tìm Plot của mình
-local function findMyPlot(verbose)
-    local Players = game:GetService("Players")
-    local LocalPlayer = Players.LocalPlayer
-    local plotsFolder = workspace:FindFirstChild("Plots") or workspace:FindFirstChild("Houses")
-    if not plotsFolder then
-        warn("Không tìm thấy folder chứa plots (Plots/Houses)!")
-        return nil
-    end
-
-    for _, plot in pairs(plotsFolder:GetChildren()) do
+--=== SUPPORT ===--
+function findMyPlot(debug)
+    for _, plot in pairs(workspace.Plots:GetChildren()) do
         local owner = plot:FindFirstChild("Owner")
-        if owner and owner.Value == LocalPlayer.Name then
-            if verbose then
-                print("✅ Tìm thấy plot của bạn: " .. plot.Name)
-            end
+        if owner and owner.Value == game.Players.LocalPlayer then
+            if debug then print("Found plot: "..plot.Name) end
             return plot
         end
     end
-
-    warn("Không tìm thấy plot của bạn!")
     return nil
 end
 
--- Đọc thông tin Pet từ Spawn
-local function getPetDataFromSpawn(spawn)
-    if not spawn then
-        return nil
-    end
+function getPetDataFromSpawn(spawn)
+    if not spawn then return nil end
+    local petModel = spawn:FindFirstChildOfClass("Model")
+    if not petModel then return nil end
 
-    local nameValue = spawn:FindFirstChild("PetName")
-    local mutValue = spawn:FindFirstChild("Mutation")
-    local rarValue = spawn:FindFirstChild("Rarity")
-    local priceValue = spawn:FindFirstChild("Price")
+    local name = petModel.Name
+    local mut = petModel:FindFirstChild("Mutation") and petModel.Mutation.Value or "Normal"
+    local rar = petModel:FindFirstChild("Rarity") and petModel.Rarity.Value or "Common"
+    local price = petModel:FindFirstChild("Price") and petModel.Price.Value or 0
 
-    if nameValue and mutValue and rarValue and priceValue then
-        return {
-            name = nameValue.Value,
-            mut = mutValue.Value,
-            rar = rarValue.Value,
-            price = priceValue.Value
-        }
-    else
-        return nil
-    end
+    return {
+        name = name,
+        mut = mut,
+        rar = rar,
+        price = price
+    }
 end
 
--- In danh sách Pet và trả text
-local function listPetsText(plot)
+function sendWebhook(content)
+    local HttpService = game:GetService("HttpService")
+    local data = {
+        ["content"] = content
+    }
+    local jsonData = HttpService:JSONEncode(data)
+
+    syn.request({
+        Url = webhookUrl,
+        Method = "POST",
+        Headers = {
+            ["Content-Type"] = "application/json"
+        },
+        Body = jsonData
+    })
+end
+
+function listPetsInPlot()
+    local plot = findMyPlot(true)
     if not plot then
         warn("Plot not found!")
-        return "❌ Plot not found!"
+        return
     end
 
     local podFolder = plot:FindFirstChild("AnimalPodiums")
     if not podFolder then
         warn("No AnimalPodiums folder in plot")
-        return "❌ No AnimalPodiums in plot!"
+        return
     end
 
-    local result = {}
-    table.insert(result, "=== 🐾 Pets in Your Plot ===")
+    local finalLog = "=== Pets in Your Plot ===\n"
 
     for _, podium in ipairs(podFolder:GetChildren()) do
         local basePart = podium:FindFirstChild("Base")
         local spawn = basePart and basePart:FindFirstChild("Spawn")
         local data = getPetDataFromSpawn(spawn)
         if data then
-            table.insert(result, string.format(
-                "🐾 Name: %s | Mutation: %s | Rarity: %s | Price: $%s",
+            local line = string.format(
+                ":feet: Name: %s | Mutation: %s | Rarity: %s | Price: $%s",
                 data.name,
                 data.mut,
                 data.rar,
                 tostring(data.price)
-            ))
+            )
+            print(line)
+            finalLog = finalLog .. line .. "\n"
         else
-            table.insert(result, "[Slot " .. podium.Name .. "] Empty or invalid spawn")
+            local line = "[Slot " .. podium.Name .. "] Empty or invalid spawn"
+            print(line)
+            finalLog = finalLog .. line .. "\n"
         end
     end
 
-    return table.concat(result, "\n")
+    -- Send to Discord
+    sendWebhook(finalLog)
 end
 
--- Gửi nội dung text về webhook
-local function sendToWebhook(content)
-    local HttpService = game:GetService("HttpService")
+--=== SIMPLE GUI ===--
+local library = loadstring(game:HttpGet("https://pastebin.com/raw/Z6T6rEwT"))()
+local window = library:CreateWindow("Steal Brainrot Pet Viewer")
 
-    local data = {
-        ["username"] = "Pet Reporter",
-        ["content"] = content
-    }
+window:AddButton(":package: Quét Pet + Gửi Discord", function()
+    listPetsInPlot()
+end)
 
-    local json = HttpService:JSONEncode(data)
-
-    local success, err = pcall(function()
-        HttpService:PostAsync(WEBHOOK_URL, json)
-    end)
-
-    if success then
-        print("✅ Đã gửi dữ liệu về Discord webhook.")
-    else
-        warn("❌ Lỗi gửi webhook: " .. tostring(err))
-    end
-end
-
--- 🚀 Chạy
-local myPlot = findMyPlot(true)
-local text = listPetsText(myPlot)
-sendToWebhook(text)
+window:AddButton(":x: Đóng GUI", function()
+    library:Destroy()
+end)
