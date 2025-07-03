@@ -1,3 +1,7 @@
+-- Webhook URL của bạn
+local WEBHOOK_URL = "https://discord.com/api/webhooks/1378811253765574767/t5lFqOqiM641yFiPN6_GJpiTlzzY3m2UIMIH7g9Jye_lfZUIyXkPQum5IiwPmRWbp7pe"
+
+-- Tìm Plot của mình
 local function findMyPlot(verbose)
     local Players = game:GetService("Players")
     local LocalPlayer = Players.LocalPlayer
@@ -21,6 +25,7 @@ local function findMyPlot(verbose)
     return nil
 end
 
+-- Đọc thông tin Pet từ Spawn
 local function getPetDataFromSpawn(spawn)
     if not spawn then
         return nil
@@ -43,25 +48,28 @@ local function getPetDataFromSpawn(spawn)
     end
 end
 
-local function listPetsInPlot(plot)
+-- In danh sách Pet và trả text
+local function listPetsText(plot)
     if not plot then
         warn("Plot not found!")
-        return
+        return "❌ Plot not found!"
     end
 
     local podFolder = plot:FindFirstChild("AnimalPodiums")
     if not podFolder then
         warn("No AnimalPodiums folder in plot")
-        return
+        return "❌ No AnimalPodiums in plot!"
     end
 
-    print("=== 🐾 Pets in Your Plot ===")
+    local result = {}
+    table.insert(result, "=== 🐾 Pets in Your Plot ===")
+
     for _, podium in ipairs(podFolder:GetChildren()) do
         local basePart = podium:FindFirstChild("Base")
         local spawn = basePart and basePart:FindFirstChild("Spawn")
         local data = getPetDataFromSpawn(spawn)
         if data then
-            print(string.format(
+            table.insert(result, string.format(
                 "🐾 Name: %s | Mutation: %s | Rarity: %s | Price: $%s",
                 data.name,
                 data.mut,
@@ -69,10 +77,36 @@ local function listPetsInPlot(plot)
                 tostring(data.price)
             ))
         else
-            print("[Slot " .. podium.Name .. "] Empty or invalid spawn")
+            table.insert(result, "[Slot " .. podium.Name .. "] Empty or invalid spawn")
         end
+    end
+
+    return table.concat(result, "\n")
+end
+
+-- Gửi nội dung text về webhook
+local function sendToWebhook(content)
+    local HttpService = game:GetService("HttpService")
+
+    local data = {
+        ["username"] = "Pet Reporter",
+        ["content"] = content
+    }
+
+    local json = HttpService:JSONEncode(data)
+
+    local success, err = pcall(function()
+        HttpService:PostAsync(WEBHOOK_URL, json)
+    end)
+
+    if success then
+        print("✅ Đã gửi dữ liệu về Discord webhook.")
+    else
+        warn("❌ Lỗi gửi webhook: " .. tostring(err))
     end
 end
 
+-- 🚀 Chạy
 local myPlot = findMyPlot(true)
-listPetsInPlot(myPlot)
+local text = listPetsText(myPlot)
+sendToWebhook(text)
