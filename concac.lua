@@ -131,8 +131,18 @@ if Tienhienco2 < 1000000000 then
 			"Bee Egg",
 			"Oasis Egg",
 		},
-		Restocks_limit = 200000000,
-		MinimumChi = 100
+		["Zen Event"] = {
+			["Restocking"] = { -- Minimumthing to restock
+				Max_Restocks_Price = 550000000,
+				Minimum_Money = 10000000000,
+				Minimum_Chi = 275
+			},
+			["Doing"] = {
+				Minimum_Money = 50000000, -- minimum money to start play this event
+				First_Upgrade_Tree = 4,
+				Maximum_Chi = 275,
+			}
+		},
 	},
 
 	Gear = {
@@ -230,6 +240,7 @@ if Tienhienco2 < 1000000000 then
 			"Raccoon",
 			"Red Fox",
 			["Blood Kiwi"] = 10,
+			["Capybara"] = 1,
 			},
 			LockPet_Weight = 6,
 			Instant_Sell = {
@@ -267,7 +278,7 @@ else
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 100,
+		["Limit"] = 120,
 		["Destroy Untill"] = 70,
 
 		["Safe Tree"] = {
@@ -327,8 +338,18 @@ else
 			"Bee Egg",
 			"Oasis Egg",
 		},
-		Restocks_limit = 200000000,
-		MinimumChi = 100
+		["Zen Event"] = {
+			["Restocking"] = { -- Minimumthing to restock
+				Max_Restocks_Price = 550000000,
+				Minimum_Money = 10000000000,
+				Minimum_Chi = 275
+			},
+			["Doing"] = {
+				Minimum_Money = 50000000, -- minimum money to start play this event
+				First_Upgrade_Tree = 4,
+				Maximum_Chi = 275,
+			}
+		},
 	},
 
 	Gear = {
@@ -426,6 +447,7 @@ else
 			"Raccoon",
 			"Red Fox",
 			["Blood Kiwi"] = 10,
+			["Capybara"] = 1,
 			},
 			LockPet_Weight = 6,
 			Instant_Sell = {
