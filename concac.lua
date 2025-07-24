@@ -4,14 +4,6 @@ task.spawn(function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
 
-task.spawn(function()
-    loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=extra%2Ftrackshit.txt"))()
-end)
-
-task.spawn(function()
-    loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=LILBIPTRADE%20GAG%2Fcheckpet.txt"))()
-end)
-
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
