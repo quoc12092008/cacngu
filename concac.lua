@@ -64,11 +64,6 @@ end
 
 -- Example usage
 -- local socay, sotomato = countPlantsPhysical()
-setfpscap(2)
-task.delay(60, function()
-    setfpscap(2)
-end)
-
 if Tienhienco2 < 1000000000 then
 	getgenv().ConfigsKaitun = {
 	["Block Pet Gift"] = true,
@@ -103,7 +98,7 @@ if Tienhienco2 < 1000000000 then
 
 			},
 			Lock = {
-				"Tomato",
+				
 			}
 		}
 	},
@@ -211,10 +206,11 @@ if Tienhienco2 < 1000000000 then
 				["Bald Eagle"] = { 99, 999, 3},
 				["Blood Kiwi"] = { 99, 999, 4},
 				["Rooster"] = { 99, 999, 5},
-				["Koi"] = { 99, 999, 6},
+				["Chicken"] = { 99, 999, 6},
 				["Seal"] = { 99, 999, 7},
-				["Pachycephalosaurus"] = { 99, 999, 8},
-				["Orangutan"] = { 99, 999, 9},
+				["Koi"] = { 99, 999, 8},
+				["Pachycephalosaurus"] = { 99, 999, 9},
+				["Orangutan"] = { 99, 999, 10},
 
 			},
 		},
@@ -235,6 +231,7 @@ if Tienhienco2 < 1000000000 then
 			["Seal"] = 10,
 			["Orangutan"] = 10,
 			["Bald Eagle"] = 8,
+			["Chicken"] = 8,
 			["Moon Cat"] = 1,
 			"Fennec Fox",
 			["Hamster"] = 1,
@@ -247,12 +244,13 @@ if Tienhienco2 < 1000000000 then
 			"Red Fox",
 			["Blood Kiwi"] = 10,
 			["Capybara"] = 1,
-			},
-			LockPet_Weight = 6,
-			Instant_Sell = {
-				"Dog",
-				"Bunny",
-				"Golden Lab",
+		},
+		Locked_Pet_Age = 60,
+		LockPet_Weight = 6,
+		Instant_Sell = {
+			"Dog",
+			"Bunny",
+			"Golden Lab",
 		}
 	},
 
@@ -311,7 +309,7 @@ else
 
 			},
 			Lock = {
-				"Tomato",
+				
 			}
 		}
 	},
@@ -419,10 +417,11 @@ else
 				["Bald Eagle"] = { 99, 999, 3},
 				["Blood Kiwi"] = { 99, 999, 4},
 				["Rooster"] = { 99, 999, 5},
-				["Koi"] = { 99, 999, 6},
+				["Chicken"] = { 99, 999, 6},
 				["Seal"] = { 99, 999, 7},
-				["Pachycephalosaurus"] = { 99, 999, 8},
-				["Orangutan"] = { 99, 999, 9},
+				["Koi"] = { 99, 999, 8},
+				["Pachycephalosaurus"] = { 99, 999, 9},
+				["Orangutan"] = { 99, 999, 10},
 
 			},
 		},
@@ -443,6 +442,7 @@ else
 			["Seal"] = 10,
 			["Orangutan"] = 10,
 			["Bald Eagle"] = 8,
+			["Chicken"] = 8,
 			["Moon Cat"] = 1,
 			"Fennec Fox",
 			["Hamster"] = 1,
@@ -455,12 +455,13 @@ else
 			"Red Fox",
 			["Blood Kiwi"] = 10,
 			["Capybara"] = 1,
-			},
-			LockPet_Weight = 6,
-			Instant_Sell = {
-				"Dog",
-				"Bunny",
-				"Golden Lab",
+		},
+		Locked_Pet_Age = 60,
+		LockPet_Weight = 6,
+		Instant_Sell = {
+			"Dog",
+			"Bunny",
+			"Golden Lab",
 		}
 	},
 
