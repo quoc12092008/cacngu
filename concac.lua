@@ -4,7 +4,6 @@ task.spawn(function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
 
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local LocalDataService = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules", 10).DataService)
@@ -64,6 +63,7 @@ end
 
 -- Example usage
 -- local socay, sotomato = countPlantsPhysical()
+
 if Tienhienco2 < 1000000000 then
 	getgenv().ConfigsKaitun = {
 	["Block Pet Gift"] = true,
@@ -76,6 +76,11 @@ if Tienhienco2 < 1000000000 then
 		["Destroy Untill"] = 200,
 
 		["Safe Tree"] = {
+			"Beanstalk",
+			"Ember Lily",
+			"Sugar Apple",
+			"Burning Bud",
+			"Giant Pinecone",
 			"Fossilight",
 			"Maple Apple",
 			"Elephant Ears",
@@ -204,8 +209,8 @@ if Tienhienco2 < 1000000000 then
 				["Starfish"] = { 1, 75, 1},
 				["Tanchozuru"] = { 3, 999, 2},
 				["Bald Eagle"] = { 99, 999, 3},
-				["Blood Kiwi"] = { 99, 999, 4},
-				["Rooster"] = { 99, 999, 5},
+				["Blood Kiwi"] = { 99, 999, 5},
+				["Rooster"] = { 99, 999, 4},
 				["Chicken"] = { 99, 999, 6},
 				["Seal"] = { 99, 999, 7},
 				["Koi"] = { 99, 999, 8},
@@ -287,6 +292,11 @@ else
 		["Destroy Untill"] = 70,
 
 		["Safe Tree"] = {
+			"Beanstalk",
+			"Ember Lily",
+			"Sugar Apple",
+			"Burning Bud",
+			"Giant Pinecone",
 			"Fossilight",
 			"Maple Apple",
 			"Elephant Ears",
@@ -415,8 +425,8 @@ else
 				["Starfish"] = { 1, 75, 1},
 				["Tanchozuru"] = { 3, 999, 2},
 				["Bald Eagle"] = { 99, 999, 3},
-				["Blood Kiwi"] = { 99, 999, 4},
-				["Rooster"] = { 99, 999, 5},
+				["Blood Kiwi"] = { 99, 999, 5},
+				["Rooster"] = { 99, 999, 4},
 				["Chicken"] = { 99, 999, 6},
 				["Seal"] = { 99, 999, 7},
 				["Koi"] = { 99, 999, 8},
