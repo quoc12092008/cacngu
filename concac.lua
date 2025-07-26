@@ -87,6 +87,7 @@ if Tienhienco2 < 1000000000 then
 			"Sunflower",
 			"Dragon Pepper",
 			"Bone Blossom",
+			"Tranquil Bloom",
 		}
 	},
 
@@ -139,7 +140,7 @@ if Tienhienco2 < 1000000000 then
 		},
 		["Zen Event"] = {
 			["Restocking"] = { -- Minimumthing to restock
-				Max_Restocks_Price = 550000000,
+				Max_Restocks_Price = 2200000000,
 				Minimum_Money = 10000000000,
 				Minimum_Chi = 275
 			},
@@ -172,6 +173,7 @@ if Tienhienco2 < 1000000000 then
 			"Common Summer Egg",
 			"Rare Egg",
 			"Rare Summer Egg",
+			"Corrupted Zen Egg",
 			"Zen Egg",
 			"Primal Egg",
 			"Dinosaur Egg",
@@ -221,9 +223,11 @@ if Tienhienco2 < 1000000000 then
 		},
 		Locked = {
 			["Tanchozuru"] = 3,
-			["Koi"] = 10,
+			["Koi"] = 20,
 			"Kitsune",
+			"Corrupted Kitsune",
 			["Kappa"] = 1,
+			["Mizuchi"] = 1,
 			["Dilophosaurus"] = 1,
 			["Ankylosaurus"] = 1,
 			"Spinosaurus",
@@ -289,7 +293,7 @@ else
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
 		["Limit"] = 120,
-		["Destroy Untill"] = 70,
+		["Destroy Untill"] = 80,
 
 		["Safe Tree"] = {
 			"Beanstalk",
@@ -303,6 +307,7 @@ else
 			"Sunflower",
 			"Dragon Pepper",
 			"Bone Blossom",
+			"Tranquil Bloom",
 		}
 	},
 
@@ -355,7 +360,7 @@ else
 		},
 		["Zen Event"] = {
 			["Restocking"] = { -- Minimumthing to restock
-				Max_Restocks_Price = 550000000,
+				Max_Restocks_Price = 2200000000,
 				Minimum_Money = 10000000000,
 				Minimum_Chi = 275
 			},
@@ -388,6 +393,7 @@ else
 			"Common Summer Egg",
 			"Rare Egg",
 			"Rare Summer Egg",
+			"Corrupted Zen Egg",
 			"Zen Egg",
 			"Primal Egg",
 			"Dinosaur Egg",
@@ -437,9 +443,11 @@ else
 		},
 		Locked = {
 			["Tanchozuru"] = 3,
-			["Koi"] = 10,
+			["Koi"] = 20,
 			"Kitsune",
+			"Corrupted Kitsune",
 			["Kappa"] = 1,
+			["Mizuchi"] = 1,
 			["Dilophosaurus"] = 1,
 			["Ankylosaurus"] = 1,
 			"Spinosaurus",
