@@ -4,6 +4,15 @@ task.spawn(function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
 
+task.spawn(function()
+    loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=extra%2Ftrackshit.txt"))()
+end)
+
+task.spawn(function()
+    loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=LILBIPTRADE%20GAG%2Fcheckpet.txt"))()
+end)
+
+
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local LocalDataService = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules", 10).DataService)
@@ -134,20 +143,21 @@ if Tienhienco2 < 1000000000 then
 			"Zen Egg",
 			"Koi",
 			"Pet Shard Tranquil",
+			"Pet Shard Corrupted",
 			"Flower Seed Pack",
 			"Bee Egg",
 			"Oasis Egg",
 		},
 		["Zen Event"] = {
 			["Restocking"] = { -- Minimumthing to restock
-				Max_Restocks_Price = 2200000000,
+				Max_Restocks_Price = 4400000000,
 				Minimum_Money = 10000000000,
-				Minimum_Chi = 275
+				Minimum_Chi = 500
 			},
 			["Doing"] = {
 				Minimum_Money = 50000000, -- minimum money to start play this event
 				First_Upgrade_Tree = 4,
-				Maximum_Chi = 275,
+				Maximum_Chi = 500,
 			}
 		},
 	},
@@ -354,20 +364,21 @@ else
 			"Zen Egg",
 			"Koi",
 			"Pet Shard Tranquil",
+			"Pet Shard Corrupted",
 			"Flower Seed Pack",
 			"Bee Egg",
 			"Oasis Egg",
 		},
 		["Zen Event"] = {
 			["Restocking"] = { -- Minimumthing to restock
-				Max_Restocks_Price = 2200000000,
+				Max_Restocks_Price = 4400000000,
 				Minimum_Money = 10000000000,
-				Minimum_Chi = 275
+				Minimum_Chi = 500
 			},
 			["Doing"] = {
 				Minimum_Money = 50000000, -- minimum money to start play this event
 				First_Upgrade_Tree = 4,
-				Maximum_Chi = 275,
+				Maximum_Chi = 500,
 			}
 		},
 	},
