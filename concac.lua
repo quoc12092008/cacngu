@@ -1,8 +1,17 @@
 getgenv().daubuoi = true
 
-task.spawn(function()
+task.delay(60, function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
+
+task.spawn(function()
+    loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=extra%2Ftrackshit.txt"))()
+end)
+
+task.delay(30, function()
+    loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=LILBIPTRADE%20GAG%2Fcheckpet.txt"))()
+end)
+
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
@@ -63,6 +72,11 @@ end
 
 -- Example usage
 -- local socay, sotomato = countPlantsPhysical()
+setfpscap(2)
+task.delay(60, function()
+    setfpscap(2)
+end)
+
 if Tienhienco2 < 1000000000 then
 	getgenv().ConfigsKaitun = {
 	["Block Pet Gift"] = true,
@@ -202,7 +216,7 @@ if Tienhienco2 < 1000000000 then
 	},
 
 	Pets = {
-		["Start Delete Pet At"] = 50,
+		["Start Delete Pet At"] = 40,
 		["Upgrade Slot"] = {
 			["Pet"] = {
 				["Starfish"] = { 5, 75, 1},
@@ -211,21 +225,23 @@ if Tienhienco2 < 1000000000 then
 			["Equip When Done"] = {
 				["Starfish"] = { 1, 75, 1},
 				["Tanchozuru"] = { 3, 999, 2},
-				["Bald Eagle"] = { 99, 999, 3},
-				["Blood Kiwi"] = { 99, 999, 5},
-				["Rooster"] = { 99, 999, 4},
-				["Chicken"] = { 99, 999, 6},
-				["Seal"] = { 99, 999, 7},
-				["Koi"] = { 99, 999, 8},
-				["Pachycephalosaurus"] = { 99, 999, 9},
-				["Orangutan"] = { 99, 999, 10},
+				["Corrupted Kitsune"] = { 99, 999, 3},
+				["Corrupted Kodama"] = { 3, 999, 4},
+				["Bald Eagle"] = { 99, 999, 5},
+				["Blood Kiwi"] = { 99, 999, 6},
+				["Rooster"] = { 99, 999, 7},
+				["Chicken"] = { 99, 999, 8},
+				["Seal"] = { 99, 999, 9},
+				["Koi"] = { 99, 999, 10},
+				["Pachycephalosaurus"] = { 99, 999, 11},
+				["Orangutan"] = { 99, 999, 12},
 
 			},
 		},
 		Locked = {
 			["Corrupted Kodama"] = 3,
 			["Tanchozuru"] = 3,
-			["Koi"] = 20,
+			["Koi"] = 16,
 			"Kitsune",
 			"Corrupted Kitsune",
 			["Kappa"] = 1,
@@ -245,7 +261,6 @@ if Tienhienco2 < 1000000000 then
 			["Chicken"] = 8,
 			["Moon Cat"] = 1,
 			"Fennec Fox",
-			["Hamster"] = 1,
 			"Disco Bee",
 			"Butterfly",
 			"Mimic Octopus",
@@ -254,7 +269,6 @@ if Tienhienco2 < 1000000000 then
 			"Raccoon",
 			"Red Fox",
 			["Blood Kiwi"] = 10,
-			["Capybara"] = 1,
 		},
 		Locked_Pet_Age = 60,
 		LockPet_Weight = 6,
@@ -425,7 +439,7 @@ else
 	},
 
 	Pets = {
-		["Start Delete Pet At"] = 50,
+		["Start Delete Pet At"] = 40,
 		["Upgrade Slot"] = {
 			["Pet"] = {
 				["Starfish"] = { 5, 75, 1},
@@ -434,21 +448,23 @@ else
 			["Equip When Done"] = {
 				["Starfish"] = { 1, 75, 1},
 				["Tanchozuru"] = { 3, 999, 2},
-				["Bald Eagle"] = { 99, 999, 3},
-				["Blood Kiwi"] = { 99, 999, 5},
-				["Rooster"] = { 99, 999, 4},
-				["Chicken"] = { 99, 999, 6},
-				["Seal"] = { 99, 999, 7},
-				["Koi"] = { 99, 999, 8},
-				["Pachycephalosaurus"] = { 99, 999, 9},
-				["Orangutan"] = { 99, 999, 10},
+				["Corrupted Kitsune"] = { 99, 999, 3},
+				["Corrupted Kodama"] = { 3, 999, 4},
+				["Bald Eagle"] = { 99, 999, 5},
+				["Blood Kiwi"] = { 99, 999, 6},
+				["Rooster"] = { 99, 999, 7},
+				["Chicken"] = { 99, 999, 8},
+				["Seal"] = { 99, 999, 9},
+				["Koi"] = { 99, 999, 10},
+				["Pachycephalosaurus"] = { 99, 999, 11},
+				["Orangutan"] = { 99, 999, 12},
 
 			},
 		},
 		Locked = {
 			["Corrupted Kodama"] = 3,
 			["Tanchozuru"] = 3,
-			["Koi"] = 20,
+			["Koi"] = 16,
 			"Kitsune",
 			"Corrupted Kitsune",
 			["Kappa"] = 1,
@@ -468,7 +484,6 @@ else
 			["Chicken"] = 8,
 			["Moon Cat"] = 1,
 			"Fennec Fox",
-			["Hamster"] = 1,
 			"Disco Bee",
 			"Butterfly",
 			"Mimic Octopus",
@@ -477,7 +492,6 @@ else
 			"Raccoon",
 			"Red Fox",
 			["Blood Kiwi"] = 10,
-			["Capybara"] = 1,
 		},
 		Locked_Pet_Age = 60,
 		LockPet_Weight = 6,
