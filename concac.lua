@@ -4,8 +4,6 @@ task.delay(60, function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
 
-
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local LocalDataService = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules", 10).DataService)
@@ -65,12 +63,7 @@ end
 
 -- Example usage
 -- local socay, sotomato = countPlantsPhysical()
-setfpscap(2)
-task.delay(60, function()
-    setfpscap(2)
-end)
-
-if Tienhienco2 < 1000000000 then
+if Tienhienco2 < 2000000000 then
 	getgenv().ConfigsKaitun = {
 	["Block Pet Gift"] = true,
 	["Stack Plant"] = true,
@@ -78,10 +71,11 @@ if Tienhienco2 < 1000000000 then
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 250,
-		["Destroy Untill"] = 200,
+		["Limit"] = 300,
+		["Destroy Untill"] = 250,
 
 		["Safe Tree"] = {
+			"Elder Strawberry",
 			"Beanstalk",
 			"Ember Lily",
 			"Sugar Apple",
@@ -94,6 +88,14 @@ if Tienhienco2 < 1000000000 then
 			"Dragon Pepper",
 			"Bone Blossom",
 			"Tranquil Bloom",
+			["Tomato"] = 10, ["Strawberry"] = 10, ["Blueberry"] = 10,
+			["Orange Tulip"] = 10, ["Corn"] = 10, ["Daffodil"] = 10,
+			["Bamboo"] = 10, ["Apple"] = 10, ["Coconut"] = 10,
+			["Pumpkin"] = 10, ["Watermelon"] = 10, ["Cactus"] = 10,
+			["Dragon Fruit"] = 10, ["Mango"] = 10, ["Grape"] = 10,
+			["Mushroom"] = 10, ["Pepper"] = 10, ["Cacao"] = 10,
+			["Monoblooma"] = 10, ["Serenity"] = 10, ["Taro Flower"] = 10,
+			["Zen Rocks"] = 10, ["Hinomai"] = 10,
 		}
 	},
 
@@ -232,7 +234,7 @@ if Tienhienco2 < 1000000000 then
 			},
 		},
 		Locked = {
-			["Corrupted Kodama"] = 3,
+			["Corrupted Kodama"] = 10,
 			["Tanchozuru"] = 3,
 			["Koi"] = 16,
 			"Kitsune",
@@ -264,7 +266,7 @@ if Tienhienco2 < 1000000000 then
 			["Blood Kiwi"] = 10,
 		},
 		Locked_Pet_Age = 60,
-		LockPet_Weight = 6,
+		LockPet_Weight = 7,
 		Instant_Sell = {
 			"Dog",
 			"Bunny",
@@ -301,8 +303,8 @@ else
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 120,
-		["Destroy Untill"] = 80,
+		["Limit"] = 250,
+		["Destroy Untill"] = 200,
 
 		["Safe Tree"] = {
 			"Beanstalk",
@@ -317,6 +319,14 @@ else
 			"Dragon Pepper",
 			"Bone Blossom",
 			"Tranquil Bloom",
+			["Tomato"] = 10, ["Strawberry"] = 10, ["Blueberry"] = 10,
+			["Orange Tulip"] = 10, ["Corn"] = 10, ["Daffodil"] = 10,
+			["Bamboo"] = 10, ["Apple"] = 10, ["Coconut"] = 10,
+			["Pumpkin"] = 10, ["Watermelon"] = 10, ["Cactus"] = 10,
+			["Dragon Fruit"] = 10, ["Mango"] = 10, ["Grape"] = 10,
+			["Mushroom"] = 10, ["Pepper"] = 10, ["Cacao"] = 10,
+			["Monoblooma"] = 10, ["Serenity"] = 10, ["Taro Flower"] = 10,
+			["Zen Rocks"] = 10, ["Hinomai"] = 10,
 		}
 	},
 
@@ -328,9 +338,31 @@ else
 			}
 		},
 		Place = {
-			Mode = "Lock", -- Select , Lock
+			Mode = "Select", -- Select , Lock
 			Select = {
-
+				"Tomato",
+				"Strawberry",
+				"Blueberry",
+				"Orange Tulip",
+				"Corn",
+				"Daffodil",
+				"Bamboo",
+				"Apple",
+				"Coconut",
+				"Pumpkin",
+				"Watermelon",
+				"Cactus",
+				"Dragon Fruit",
+				"Mango",
+				"Grape",
+				"Mushroom",
+				"Pepper",
+				"Cacao",
+				"Monoblooma",
+				"Serenity",
+				"Taro Flower",
+				"Zen Rocks",
+				"Hinomai",
 			},
 			Lock = {
 				
@@ -455,7 +487,7 @@ else
 			},
 		},
 		Locked = {
-			["Corrupted Kodama"] = 3,
+			["Corrupted Kodama"] = 10,
 			["Tanchozuru"] = 3,
 			["Koi"] = 16,
 			"Kitsune",
@@ -487,7 +519,7 @@ else
 			["Blood Kiwi"] = 10,
 		},
 		Locked_Pet_Age = 60,
-		LockPet_Weight = 6,
+		LockPet_Weight = 7,
 		Instant_Sell = {
 			"Dog",
 			"Bunny",
