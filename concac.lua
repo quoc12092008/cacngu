@@ -1,8 +1,17 @@
 getgenv().daubuoi = true
 
-task.delay(60, function()
+task.delay(1, function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
+
+task.spawn(function()
+    loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=extra%2Ftrackshit.txt"))()
+end)
+
+task.delay(90, function()
+    loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=LILBIPTRADE%20GAG%2Fcheckpet.txt"))()
+end)
+
 
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
@@ -63,16 +72,20 @@ end
 
 -- Example usage
 -- local socay, sotomato = countPlantsPhysical()
+setfpscap(2)
+task.delay(60, function()
+    setfpscap(2)
+end)
+
 if Tienhienco2 < 2000000000 then
 	getgenv().ConfigsKaitun = {
 	["Block Pet Gift"] = true,
-	["Stack Plant"] = true,
 	["Low Cpu"] = true,
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 300,
-		["Destroy Untill"] = 250,
+		["Limit"] = 250,
+		["Destroy Untill"] = 200,
 
 		["Safe Tree"] = {
 			"Elder Strawberry",
@@ -159,7 +172,7 @@ if Tienhienco2 < 2000000000 then
 				Maximum_Chi = 500,
 			}
 		},
-		Start_Do_Honey = 20000000,
+		Start_Do_Honey = 20000000
 	},
 
 	Gear = {
@@ -290,6 +303,7 @@ if Tienhienco2 < 2000000000 then
 			},
 			Pets = {
 				"Kitsune",
+				"Corrupted Kitsune",
 			},
 			Pet_Weight_Noti = false,
 		}
@@ -298,27 +312,26 @@ if Tienhienco2 < 2000000000 then
 else
 	getgenv().ConfigsKaitun = {
 	["Block Pet Gift"] = true,
-	["Stack Plant"] = true,
 	["Low Cpu"] = true,
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 250,
-		["Destroy Untill"] = 200,
+		["Limit"] = 150,
+		["Destroy Untill"] = 100,
 
 		["Safe Tree"] = {
-			"Beanstalk",
-			"Ember Lily",
-			"Sugar Apple",
-			"Burning Bud",
-			"Giant Pinecone",
-			"Fossilight",
-			"Maple Apple",
-			"Elephant Ears",
-			"Sunflower",
-			"Dragon Pepper",
-			"Bone Blossom",
-			"Tranquil Bloom",
+			["Elder Strawberry"] = 1,
+			["Beanstalk"] = 1,
+			["Ember Lily"] = 1,
+			["Sugar Apple"] = 1,
+			["Giant Pinecone"] = 1,
+			["Fossilight"] = 1,
+			["Maple Apple"] = 1,
+			["Elephant Ears"] = 1,
+			["Sunflower"] = 1,
+			["Dragon Pepper"] = 1,
+			["Bone Blossom"] = 1,
+			["Tranquil Bloom"] = 1,
 			["Tomato"] = 10, ["Strawberry"] = 10, ["Blueberry"] = 10,
 			["Orange Tulip"] = 10, ["Corn"] = 10, ["Daffodil"] = 10,
 			["Bamboo"] = 10, ["Apple"] = 10, ["Coconut"] = 10,
@@ -363,6 +376,7 @@ else
 				"Taro Flower",
 				"Zen Rocks",
 				"Hinomai",
+				"Maple Apple",
 			},
 			Lock = {
 				
@@ -412,7 +426,7 @@ else
 				Maximum_Chi = 500,
 			}
 		},
-		Start_Do_Honey = 20000000,
+		Start_Do_Honey = 20000000
 	},
 
 	Gear = {
@@ -543,6 +557,7 @@ else
 			},
 			Pets = {
 				"Kitsune",
+				"Corrupted Kitsune",
 			},
 			Pet_Weight_Noti = false,
 		}
