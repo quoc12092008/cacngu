@@ -4,7 +4,6 @@ task.delay(1, function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
 
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local LocalDataService = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules", 10).DataService)
@@ -64,6 +63,10 @@ end
 
 -- Example usage
 -- local socay, sotomato = countPlantsPhysical()
+setfpscap(2)
+task.delay(60, function()
+    setfpscap(2)
+end)
 
 if Tienhienco2 < 1000000000 then
 	getgenv().ConfigsKaitun = {
