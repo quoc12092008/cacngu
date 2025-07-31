@@ -4,6 +4,7 @@ task.delay(1, function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
 
+
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local LocalDataService = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules", 10).DataService)
@@ -63,20 +64,16 @@ end
 
 -- Example usage
 -- local socay, sotomato = countPlantsPhysical()
-setfpscap(2)
-task.delay(60, function()
-    setfpscap(2)
-end)
 
-if Tienhienco2 < 2000000000 then
+if Tienhienco2 < 1000000000 then
 	getgenv().ConfigsKaitun = {
 	["Block Pet Gift"] = true,
 	["Low Cpu"] = true,
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 250,
-		["Destroy Untill"] = 200,
+		["Limit"] = 500,
+		["Destroy Untill"] = 400,
 
 		["Safe Tree"] = {
 			"Elder Strawberry",
@@ -161,6 +158,8 @@ if Tienhienco2 < 2000000000 then
 				Minimum_Money = 50000000, -- minimum money to start play this event
 				First_Upgrade_Tree = 4,
 				Maximum_Chi = 500,
+				Skip_Fox = false,
+				Skip_Corrupted_OldMan = false,
 			}
 		},
 		Start_Do_Honey = 20000000
@@ -243,6 +242,7 @@ if Tienhienco2 < 2000000000 then
 			["Koi"] = 16,
 			"Kitsune",
 			"Corrupted Kitsune",
+			["Kodama"] = 1,
 			["Kappa"] = 1,
 			["Mizuchi"] = 1,
 			["Dilophosaurus"] = 1,
@@ -307,7 +307,7 @@ else
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 150,
+		["Limit"] = 160,
 		["Destroy Untill"] = 100,
 
 		["Safe Tree"] = {
@@ -325,10 +325,10 @@ else
 			["Tranquil Bloom"] = 1,
 			["Tomato"] = 10, ["Strawberry"] = 10, ["Blueberry"] = 10,
 			["Orange Tulip"] = 10, ["Corn"] = 10, ["Daffodil"] = 10,
-			["Bamboo"] = 10, ["Apple"] = 10, ["Coconut"] = 10,
-			["Pumpkin"] = 10, ["Watermelon"] = 10, ["Cactus"] = 10,
-			["Dragon Fruit"] = 10, ["Mango"] = 10, ["Grape"] = 10,
-			["Mushroom"] = 10, ["Pepper"] = 10, ["Cacao"] = 10,
+			["Bamboo"] = 10, ["Apple"] = 10, ["Coconut"] = 2,
+			["Pumpkin"] = 3, ["Watermelon"] = 3, ["Cactus"] = 3,
+			["Dragon Fruit"] = 3, ["Mango"] = 3, ["Grape"] = 10,
+			["Mushroom"] = 3, ["Pepper"] = 3, ["Cacao"] = 3,
 			["Monoblooma"] = 10, ["Serenity"] = 10, ["Taro Flower"] = 10,
 			["Zen Rocks"] = 10, ["Hinomai"] = 10,
 		}
@@ -415,6 +415,8 @@ else
 				Minimum_Money = 50000000, -- minimum money to start play this event
 				First_Upgrade_Tree = 4,
 				Maximum_Chi = 500,
+				Skip_Fox = false,
+				Skip_Corrupted_OldMan = false,
 			}
 		},
 		Start_Do_Honey = 20000000
@@ -501,6 +503,7 @@ else
 			["Mizuchi"] = 1,
 			["Dilophosaurus"] = 1,
 			["Ankylosaurus"] = 1,
+			["Kodama"] = 1,
 			"Spinosaurus",
 			["Starfish"] = 8,
 			["Rooster"] = 10,
