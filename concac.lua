@@ -3,7 +3,6 @@ getgenv().daubuoi = true
 task.delay(1, function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local LocalDataService = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules", 10).DataService)
@@ -70,6 +69,7 @@ end)
 
 if Tienhienco2 < 1000000000 then
 	getgenv().ConfigsKaitun = {
+	Collect_Cooldown = 90,
 	["Block Pet Gift"] = true,
 	["Low Cpu"] = true,
 	["Auto Rejoin"] = false,
@@ -272,6 +272,7 @@ if Tienhienco2 < 1000000000 then
 			"Red Fox",
 			["Blood Kiwi"] = 10,
 		},
+		Favorite_LockedPet = false,
 		Locked_Pet_Age = 60,
 		LockPet_Weight = 7,
 		Instant_Sell = {
@@ -305,13 +306,14 @@ if Tienhienco2 < 1000000000 then
 }
 else
 	getgenv().ConfigsKaitun = {
+	Collect_Cooldown = 90,
 	["Block Pet Gift"] = true,
 	["Low Cpu"] = true,
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 160,
-		["Destroy Untill"] = 100,
+		["Limit"] = 180,
+		["Destroy Untill"] = 120,
 
 		["Safe Tree"] = {
 			["Elder Strawberry"] = 1,
@@ -529,6 +531,7 @@ else
 			"Red Fox",
 			["Blood Kiwi"] = 10,
 		},
+		Favorite_LockedPet = false,
 		Locked_Pet_Age = 60,
 		LockPet_Weight = 7,
 		Instant_Sell = {
