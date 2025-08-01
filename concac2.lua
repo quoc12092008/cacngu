@@ -1,9 +1,9 @@
-
 getgenv().daubuoi = true
 
 task.delay(1, function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
+
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local LocalDataService = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules", 10).DataService)
@@ -70,14 +70,14 @@ end)
 
 if Tienhienco2 < 1000000000 then
 	getgenv().ConfigsKaitun = {
-	Collect_Cooldown = 90,
+	Collect_Cooldown = 120,
 	["Block Pet Gift"] = true,
 	["Low Cpu"] = true,
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 500,
-		["Destroy Untill"] = 400,
+		["Limit"] = 800,
+		["Destroy Untill"] = 700,
 
 		["Safe Tree"] = {
 			"Elder Strawberry",
@@ -93,14 +93,18 @@ if Tienhienco2 < 1000000000 then
 			"Dragon Pepper",
 			"Bone Blossom",
 			"Tranquil Bloom",
+			"Burning Bud",
 			["Tomato"] = 10, ["Strawberry"] = 10, ["Blueberry"] = 10,
 			["Orange Tulip"] = 10, ["Corn"] = 10, ["Daffodil"] = 10,
-			["Bamboo"] = 10, ["Apple"] = 10, ["Coconut"] = 10,
-			["Pumpkin"] = 10, ["Watermelon"] = 10, ["Cactus"] = 10,
-			["Dragon Fruit"] = 10, ["Mango"] = 10, ["Grape"] = 10,
-			["Mushroom"] = 10, ["Pepper"] = 10, ["Cacao"] = 10,
-			["Monoblooma"] = 10, ["Serenity"] = 10, ["Taro Flower"] = 10,
-			["Zen Rocks"] = 10, ["Hinomai"] = 10,
+			["Bamboo"] = 10, ["Apple"] = 10, ["Coconut"] = 2,
+			["Pumpkin"] = 3, ["Watermelon"] = 3, ["Cactus"] = 3,
+			["Dragon Fruit"] = 3, ["Mango"] = 3, ["Grape"] = 10,
+			["Mushroom"] = 3, ["Pepper"] = 3, ["Cacao"] = 3,
+			"Monoblooma",
+			"Zen Rocks",
+			"Serenity",
+			"Taro Flower",
+			"Hinomai",
 		}
 	},
 
@@ -145,6 +149,7 @@ if Tienhienco2 < 1000000000 then
 		},
 		Shop = {
 			"Zen Egg",
+			"Zen Seed Pack",
 			"Koi",
 			"Pet Shard Tranquil",
 			"Pet Shard Corrupted",
@@ -218,17 +223,17 @@ if Tienhienco2 < 1000000000 then
 	},
 
 	Pets = {
-		["Start Delete Pet At"] = 40,
+		["Start Delete Pet At"] = 60,
 		["Upgrade Slot"] = {
 			["Pet"] = {
 				["Starfish"] = { 5, 75, 1},
 			},
 			["Limit Upgrade"] = 5,
 			["Equip When Done"] = {
-				["Starfish"] = { 1, 75, 1},
-				["Tanchozuru"] = { 3, 999, 2},
-				["Corrupted Kitsune"] = { 99, 999, 3},
-				["Corrupted Kodama"] = { 3, 999, 4},
+				-- ["Starfish"] = { 1, 75, 1},
+				["Corrupted Kitsune"] = { 2, 999, 2},
+				["Kodama"] = { 99, 999, 3},
+				-- ["Corrupted Kodama"] = { 3, 999, 4},
 				["Bald Eagle"] = { 99, 999, 5},
 				["Blood Kiwi"] = { 99, 999, 6},
 				["Rooster"] = { 99, 999, 7},
@@ -241,12 +246,12 @@ if Tienhienco2 < 1000000000 then
 			},
 		},
 		Locked = {
-			["Corrupted Kodama"] = 10,
-			["Tanchozuru"] = 3,
+			["Corrupted Kodama"] = 1,
+			-- ["Tanchozuru"] = 3,
 			["Koi"] = 16,
 			"Kitsune",
 			"Corrupted Kitsune",
-			["Kodama"] = 1,
+			["Kodama"] = 8,
 			["Kappa"] = 1,
 			["Mizuchi"] = 1,
 			["Dilophosaurus"] = 1,
@@ -307,14 +312,14 @@ if Tienhienco2 < 1000000000 then
 }
 else
 	getgenv().ConfigsKaitun = {
-	Collect_Cooldown = 90,
+	Collect_Cooldown = 120,
 	["Block Pet Gift"] = true,
 	["Low Cpu"] = true,
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 180,
-		["Destroy Untill"] = 120,
+		["Limit"] = 800,
+		["Destroy Untill"] = 700,
 
 		["Safe Tree"] = {
 			["Elder Strawberry"] = 1,
@@ -335,8 +340,11 @@ else
 			["Pumpkin"] = 3, ["Watermelon"] = 3, ["Cactus"] = 3,
 			["Dragon Fruit"] = 3, ["Mango"] = 3, ["Grape"] = 10,
 			["Mushroom"] = 3, ["Pepper"] = 3, ["Cacao"] = 3,
-			["Monoblooma"] = 10, ["Serenity"] = 10, ["Taro Flower"] = 10,
-			["Zen Rocks"] = 10, ["Hinomai"] = 10,
+			"Monoblooma",
+			"Zen Rocks",
+			"Serenity",
+			"Taro Flower",
+			"Hinomai",
 		}
 	},
 
@@ -404,6 +412,7 @@ else
 		},
 		Shop = {
 			"Zen Egg",
+			"Zen Seed Pack",
 			"Koi",
 			"Pet Shard Tranquil",
 			"Pet Shard Corrupted",
@@ -477,17 +486,17 @@ else
 	},
 
 	Pets = {
-		["Start Delete Pet At"] = 40,
+		["Start Delete Pet At"] = 60,
 		["Upgrade Slot"] = {
 			["Pet"] = {
 				["Starfish"] = { 5, 75, 1},
 			},
 			["Limit Upgrade"] = 5,
 			["Equip When Done"] = {
-				["Starfish"] = { 1, 75, 1},
-				["Tanchozuru"] = { 3, 999, 2},
-				["Corrupted Kitsune"] = { 99, 999, 3},
-				["Corrupted Kodama"] = { 3, 999, 4},
+				-- ["Starfish"] = { 1, 75, 1},
+				["Corrupted Kitsune"] = { 2, 999, 2},
+				["Kodama"] = { 99, 999, 3},
+				-- ["Corrupted Kodama"] = { 3, 999, 4},
 				["Bald Eagle"] = { 99, 999, 5},
 				["Blood Kiwi"] = { 99, 999, 6},
 				["Rooster"] = { 99, 999, 7},
@@ -500,16 +509,16 @@ else
 			},
 		},
 		Locked = {
-			["Corrupted Kodama"] = 10,
-			["Tanchozuru"] = 3,
+			["Corrupted Kodama"] = 1,
+			-- ["Tanchozuru"] = 3,
 			["Koi"] = 16,
 			"Kitsune",
 			"Corrupted Kitsune",
+			["Kodama"] = 8,
 			["Kappa"] = 1,
 			["Mizuchi"] = 1,
 			["Dilophosaurus"] = 1,
 			["Ankylosaurus"] = 1,
-			["Kodama"] = 1,
 			"Spinosaurus",
 			["Starfish"] = 8,
 			["Rooster"] = 10,
@@ -565,7 +574,6 @@ else
 	},
 }
 end
-
 -- License = "imPTF7guCKxCZ6t9BDddQG8U8onOpPaA"
 License = "ju5JXpMrWkIVablg7u5YfDzBucCBHsI0"
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Real-Aya/Loader/main/Init.lua'))()
