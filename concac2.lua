@@ -76,8 +76,8 @@ if Tienhienco2 < 1000000000 then
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 800,
-		["Destroy Untill"] = 700,
+		["Limit"] = 740,
+		["Destroy Untill"] = 660,
 
 		["Safe Tree"] = {
 			"Elder Strawberry",
@@ -94,17 +94,14 @@ if Tienhienco2 < 1000000000 then
 			"Bone Blossom",
 			"Tranquil Bloom",
 			"Burning Bud",
-			["Tomato"] = 10, ["Strawberry"] = 10, ["Blueberry"] = 10,
-			["Orange Tulip"] = 10, ["Corn"] = 10, ["Daffodil"] = 10,
-			["Bamboo"] = 10, ["Apple"] = 10, ["Coconut"] = 2,
-			["Pumpkin"] = 3, ["Watermelon"] = 3, ["Cactus"] = 3,
-			["Dragon Fruit"] = 3, ["Mango"] = 3, ["Grape"] = 10,
-			["Mushroom"] = 3, ["Pepper"] = 3, ["Cacao"] = 3,
 			"Monoblooma",
 			"Zen Rocks",
 			"Serenity",
 			"Taro Flower",
 			"Hinomai",
+			"Spiked Mango",
+			"Soft Sunshine",
+			"Zenflare",
 		}
 	},
 
@@ -150,6 +147,9 @@ if Tienhienco2 < 1000000000 then
 		Shop = {
 			"Zen Egg",
 			"Zen Seed Pack",
+			"Zenflare",
+			"Soft Sunshine",
+			"Spiked Mango",
 			"Koi",
 			"Pet Shard Tranquil",
 			"Pet Shard Corrupted",
@@ -161,12 +161,12 @@ if Tienhienco2 < 1000000000 then
 			["Restocking"] = { -- Minimumthing to restock
 				Max_Restocks_Price = 4400000000,
 				Minimum_Money = 10000000000,
-				Minimum_Chi = 500
+				Minimum_Chi = 300
 			},
 			["Doing"] = {
 				Minimum_Money = 50000000, -- minimum money to start play this event
 				First_Upgrade_Tree = 4,
-				Maximum_Chi = 500,
+				Maximum_Chi = 300,
 				Skip_Fox = false,
 				Skip_Corrupted_OldMan = false,
 			}
@@ -233,7 +233,7 @@ if Tienhienco2 < 1000000000 then
 				-- ["Starfish"] = { 1, 75, 1},
 				["Corrupted Kitsune"] = { 2, 999, 2},
 				["Kodama"] = { 99, 999, 3},
-				-- ["Corrupted Kodama"] = { 3, 999, 4},
+				["Corrupted Kodama"] = { 3, 999, 4},
 				["Bald Eagle"] = { 99, 999, 5},
 				["Blood Kiwi"] = { 99, 999, 6},
 				["Rooster"] = { 99, 999, 7},
@@ -246,7 +246,7 @@ if Tienhienco2 < 1000000000 then
 			},
 		},
 		Locked = {
-			["Corrupted Kodama"] = 1,
+			["Corrupted Kodama"] = 3,
 			-- ["Tanchozuru"] = 3,
 			["Koi"] = 16,
 			"Kitsune",
@@ -318,10 +318,12 @@ else
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 800,
-		["Destroy Untill"] = 700,
+		["Limit"] = 740,
+		["Destroy Untill"] = 670,
 
 		["Safe Tree"] = {
+			"Bone Blossom",
+			"Tranquil Bloom",
 			["Elder Strawberry"] = 1,
 			["Beanstalk"] = 1,
 			["Ember Lily"] = 1,
@@ -332,19 +334,14 @@ else
 			["Elephant Ears"] = 1,
 			["Sunflower"] = 1,
 			["Dragon Pepper"] = 1,
-			["Bone Blossom"] = 1,
-			["Tranquil Bloom"] = 1,
-			["Tomato"] = 10, ["Strawberry"] = 10, ["Blueberry"] = 10,
-			["Orange Tulip"] = 10, ["Corn"] = 10, ["Daffodil"] = 10,
-			["Bamboo"] = 10, ["Apple"] = 10, ["Coconut"] = 2,
-			["Pumpkin"] = 3, ["Watermelon"] = 3, ["Cactus"] = 3,
-			["Dragon Fruit"] = 3, ["Mango"] = 3, ["Grape"] = 10,
-			["Mushroom"] = 3, ["Pepper"] = 3, ["Cacao"] = 3,
 			"Monoblooma",
 			"Zen Rocks",
 			"Serenity",
 			"Taro Flower",
 			"Hinomai",
+			"Spiked Mango",
+			"Soft Sunshine",
+			"Zenflare",
 		}
 	},
 
@@ -358,30 +355,18 @@ else
 		Place = {
 			Mode = "Select", -- Select , Lock
 			Select = {
-				"Tomato",
-				"Strawberry",
-				"Blueberry",
-				"Orange Tulip",
-				"Corn",
-				"Daffodil",
-				"Bamboo",
-				"Apple",
-				"Coconut",
-				"Pumpkin",
-				"Watermelon",
-				"Cactus",
-				"Dragon Fruit",
-				"Mango",
-				"Grape",
-				"Mushroom",
-				"Pepper",
-				"Cacao",
+				"Bone Blossom",
+				"Tranquil Bloom",
+				"Carrot",
 				"Monoblooma",
 				"Serenity",
 				"Taro Flower",
 				"Zen Rocks",
 				"Hinomai",
 				"Maple Apple",
+				"Spiked Mango",
+				"Soft Sunshine",
+				"Zenflare",
 			},
 			Lock = {
 				
@@ -413,6 +398,9 @@ else
 		Shop = {
 			"Zen Egg",
 			"Zen Seed Pack",
+			"Zenflare",
+			"Soft Sunshine",
+			"Spiked Mango",
 			"Koi",
 			"Pet Shard Tranquil",
 			"Pet Shard Corrupted",
@@ -424,12 +412,12 @@ else
 			["Restocking"] = { -- Minimumthing to restock
 				Max_Restocks_Price = 4400000000,
 				Minimum_Money = 10000000000,
-				Minimum_Chi = 500
+				Minimum_Chi = 300
 			},
 			["Doing"] = {
 				Minimum_Money = 50000000, -- minimum money to start play this event
 				First_Upgrade_Tree = 4,
-				Maximum_Chi = 500,
+				Maximum_Chi = 300,
 				Skip_Fox = false,
 				Skip_Corrupted_OldMan = false,
 			}
@@ -496,7 +484,7 @@ else
 				-- ["Starfish"] = { 1, 75, 1},
 				["Corrupted Kitsune"] = { 2, 999, 2},
 				["Kodama"] = { 99, 999, 3},
-				-- ["Corrupted Kodama"] = { 3, 999, 4},
+				["Corrupted Kodama"] = { 3, 999, 4},
 				["Bald Eagle"] = { 99, 999, 5},
 				["Blood Kiwi"] = { 99, 999, 6},
 				["Rooster"] = { 99, 999, 7},
@@ -509,7 +497,7 @@ else
 			},
 		},
 		Locked = {
-			["Corrupted Kodama"] = 1,
+			["Corrupted Kodama"] = 3,
 			-- ["Tanchozuru"] = 3,
 			["Koi"] = 16,
 			"Kitsune",
@@ -574,6 +562,6 @@ else
 	},
 }
 end
--- License = "imPTF7guCKxCZ6t9BDddQG8U8onOpPaA"
+
 License = "ju5JXpMrWkIVablg7u5YfDzBucCBHsI0"
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Real-Aya/Loader/main/Init.lua'))()
