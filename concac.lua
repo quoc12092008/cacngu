@@ -63,10 +63,6 @@ end
 
 -- Example usage
 -- local socay, sotomato = countPlantsPhysical()
-setfpscap(2)
-task.delay(60, function()
-    setfpscap(2)
-end)
 
 if Tienhienco2 < 1000000000 then
 	getgenv().ConfigsKaitun = {
