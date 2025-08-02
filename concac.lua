@@ -71,6 +71,7 @@ end)
 if Tienhienco2 < 1000000000 then
 	getgenv().ConfigsKaitun = {
 	Collect_Cooldown = 120,
+	JustFuckingCollectAll = true,
 	["Block Pet Gift"] = true,
 	["Low Cpu"] = true,
 	["Auto Rejoin"] = false,
@@ -94,13 +95,7 @@ if Tienhienco2 < 1000000000 then
 			"Bone Blossom",
 			"Tranquil Bloom",
 			"Burning Bud",
-			"Monoblooma",
-			"Zen Rocks",
 			"Serenity",
-			"Taro Flower",
-			"Hinomai",
-			"Spiked Mango",
-			"Soft Sunshine",
 			"Zenflare",
 		}
 	},
@@ -148,14 +143,15 @@ if Tienhienco2 < 1000000000 then
 			"Zen Egg",
 			"Zen Seed Pack",
 			"Zenflare",
-			"Soft Sunshine",
-			"Spiked Mango",
 			"Koi",
 			"Pet Shard Tranquil",
 			"Pet Shard Corrupted",
 			"Flower Seed Pack",
 			"Bee Egg",
 			"Oasis Egg",
+		},
+		["Cook Event"] = {
+			Minimum_Money = 50000000, -- minimum money to start play this event
 		},
 		["Zen Event"] = {
 			["Restocking"] = { -- Minimumthing to restock
@@ -195,6 +191,7 @@ if Tienhienco2 < 1000000000 then
 			"Common Summer Egg",
 			"Rare Egg",
 			"Rare Summer Egg",
+			"Gourmet Egg",
 			"Corrupted Zen Egg",
 			"Zen Egg",
 			"Primal Egg",
@@ -233,7 +230,7 @@ if Tienhienco2 < 1000000000 then
 				-- ["Starfish"] = { 1, 75, 1},
 				["Corrupted Kitsune"] = { 2, 999, 2},
 				["Kodama"] = { 99, 999, 3},
-				["Corrupted Kodama"] = { 3, 999, 4},
+				["Corrupted Kodama"] = { 2, 999, 4},
 				["Bald Eagle"] = { 99, 999, 5},
 				["Blood Kiwi"] = { 99, 999, 6},
 				["Rooster"] = { 99, 999, 7},
@@ -246,7 +243,8 @@ if Tienhienco2 < 1000000000 then
 			},
 		},
 		Locked = {
-			["Corrupted Kodama"] = 3,
+			"French Fry Ferret",
+			["Corrupted Kodama"] = 2,
 			-- ["Tanchozuru"] = 3,
 			["Koi"] = 16,
 			"Kitsune",
@@ -313,13 +311,14 @@ if Tienhienco2 < 1000000000 then
 else
 	getgenv().ConfigsKaitun = {
 	Collect_Cooldown = 120,
+	JustFuckingCollectAll = true,
 	["Block Pet Gift"] = true,
 	["Low Cpu"] = true,
 	["Auto Rejoin"] = false,
 	["Rejoin When Update"] = true,
 	["Limit Tree"] = {
-		["Limit"] = 740,
-		["Destroy Untill"] = 670,
+		["Limit"] = 150,
+		["Destroy Untill"] = 100,
 
 		["Safe Tree"] = {
 			"Bone Blossom",
@@ -334,14 +333,8 @@ else
 			["Elephant Ears"] = 1,
 			["Sunflower"] = 1,
 			["Dragon Pepper"] = 1,
-			"Monoblooma",
-			"Zen Rocks",
-			"Serenity",
-			"Taro Flower",
-			"Hinomai",
-			"Spiked Mango",
-			"Soft Sunshine",
-			"Zenflare",
+			["Serenity"] = 30,
+			["Zenflare"] = 50,
 		}
 	},
 
@@ -357,15 +350,7 @@ else
 			Select = {
 				"Bone Blossom",
 				"Tranquil Bloom",
-				"Carrot",
-				"Monoblooma",
 				"Serenity",
-				"Taro Flower",
-				"Zen Rocks",
-				"Hinomai",
-				"Maple Apple",
-				"Spiked Mango",
-				"Soft Sunshine",
 				"Zenflare",
 			},
 			Lock = {
@@ -399,14 +384,15 @@ else
 			"Zen Egg",
 			"Zen Seed Pack",
 			"Zenflare",
-			"Soft Sunshine",
-			"Spiked Mango",
 			"Koi",
 			"Pet Shard Tranquil",
 			"Pet Shard Corrupted",
 			"Flower Seed Pack",
 			"Bee Egg",
 			"Oasis Egg",
+		},
+		["Cook Event"] = {
+			Minimum_Money = 50000000, -- minimum money to start play this event
 		},
 		["Zen Event"] = {
 			["Restocking"] = { -- Minimumthing to restock
@@ -446,6 +432,7 @@ else
 			"Common Summer Egg",
 			"Rare Egg",
 			"Rare Summer Egg",
+			"Gourmet Egg",
 			"Corrupted Zen Egg",
 			"Zen Egg",
 			"Primal Egg",
@@ -483,8 +470,8 @@ else
 			["Equip When Done"] = {
 				-- ["Starfish"] = { 1, 75, 1},
 				["Corrupted Kitsune"] = { 2, 999, 2},
-				["Kodama"] = { 99, 999, 3},
-				["Corrupted Kodama"] = { 3, 999, 4},
+				["Kodama"] = { 99, 999, 4},
+				["Corrupted Kodama"] = { 2, 999, 3},
 				["Bald Eagle"] = { 99, 999, 5},
 				["Blood Kiwi"] = { 99, 999, 6},
 				["Rooster"] = { 99, 999, 7},
@@ -497,7 +484,8 @@ else
 			},
 		},
 		Locked = {
-			["Corrupted Kodama"] = 3,
+			"French Fry Ferret",
+			["Corrupted Kodama"] = 2,
 			-- ["Tanchozuru"] = 3,
 			["Koi"] = 16,
 			"Kitsune",
