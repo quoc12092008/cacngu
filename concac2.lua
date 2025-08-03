@@ -3,7 +3,6 @@ getgenv().daubuoi = true
 task.delay(1, function()
     loadstring(game:HttpGet("https://sellaccroblox.com/raw/view.php?file=lilbip%2FextraGAG.txt"))()
 end)
-
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local LocalDataService = require(game:GetService("ReplicatedStorage"):WaitForChild("Modules", 10).DataService)
@@ -600,5 +599,5 @@ else
 end
 
 -- License = "imPTF7guCKxCZ6t9BDddQG8U8onOpPaA"
-License = "ju5JXpMrWkIVablg7u5YfDzBucCBHsI0"
+License = "XcXS9v9RNf9e0vHEr77NBTx3VP2frtac"
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Real-Aya/Loader/main/Init.lua'))()
