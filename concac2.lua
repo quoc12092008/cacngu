@@ -599,5 +599,5 @@ else
 end
 
 -- License = "imPTF7guCKxCZ6t9BDddQG8U8onOpPaA"
-License = "XcXS9v9RNf9e0vHEr77NBTx3VP2frtac"
+License = "ju5JXpMrWkIVablg7u5YfDzBucCBHsI0"
 loadstring(game:HttpGet('https://raw.githubusercontent.com/Real-Aya/Loader/main/Init.lua'))()
