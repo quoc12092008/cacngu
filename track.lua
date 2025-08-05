@@ -1,2 +1,6 @@
-_G.Config = { UserID = "5887ba0e-c847-48e8-8998-d955a6b7c083", discord_id = "1378019320126509147" , Note = "Pc", } 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/gag"))()
+getgenv().Setting = {
+    UID = 'F767BEE9A2B26B36780D3C4AD88DA69D',
+    DelayUpdate = 120,
+    Note = 'loicoca1'
+}
+loadstring(game:HttpGet('https://raw.githubusercontent.com/chimnguu/ngu/refs/heads/master/client-2ngon.lua'))()
