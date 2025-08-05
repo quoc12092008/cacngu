@@ -19,8 +19,8 @@ getgenv().Config = {
     },
     ["Webhook"] = {
         ["Enable"] = true,
-        ["Url"] = "",
-        ["Discord UserID"] = "",
+        ["Url"] = "https://discordapp.com/api/webhooks/1378811253765574767/t5lFqOqiM641yFiPN6_GJpiTlzzY3m2UIMIH7g9Jye_lfZUIyXkPQum5IiwPmRWbp7pe",
+        ["Discord UserID"] = "1378019320126509147",
         ["Ignore Notify"] = {
             ["La Vacca Saturno Saturnita"] = {
                 "Normal",
