@@ -10,6 +10,7 @@ getgenv().Config = {
     },
     ["Misc"] = {
         ["Kick if Ping above"] = 100000,
+        ["Ignore Secret"] = {},
         ["Kick if FPS below"] = 5,
         ["Buy Lucky Block"] = {
             "Secret Lucky Block",
@@ -20,8 +21,8 @@ getgenv().Config = {
     },
     ["Webhook"] = {
         ["Enable"] = true,
-        ["Url"] = "",
-        ["Discord UserID"] = "",
+        ["Url"] = "https://discord.com/api/webhooks/1408759682654539807/0SFAahtT91e9UUX7gs8VVtJqledkBwmITcdWDicayUufLuuzzBTvLmgs7LM7MaMHcho8",
+        ["Discord UserID"] = "1378019320126509147",
         ["Ignore Notify"] = {
             ["La Vacca Saturno Saturnita"] = {
                 "Normal",
