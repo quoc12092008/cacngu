@@ -79,4 +79,4 @@ getgenv().Config = {
         },
     }
 }
-spawn(function() task.wait(300) if not getgenv().scriptLoaded then game.Players.LocalPlayer:Kick("Script load timeout") end end) loadstring(game:HttpGet("https://api.nousigi.com/scripts/StealABrainrot.lua"))()
+spawn(function() task.wait(30) if not getgenv().scriptLoaded then game.Players.LocalPlayer:Kick("Script load timeout\nKick to prevent animal gets stolen") end end) repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(20)until getgenv().Joebiden
