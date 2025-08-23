@@ -10,9 +10,10 @@ getgenv().Config = {
     },
     ["Misc"] = {
         ["Kick if Ping above"] = 100000,
-        ["Ignore Secret"] = {},
-        ["Buy Lucky Block"] = {},
-    },
+        ["Kick if FPS below"] = 5,
+        ["Buy Lucky Block"] = {
+            "Secret Lucky Block",
+},
     ["Performance"] = {
         ["Boost FPS"] = true,
         ["Black Screen"] = true,
