@@ -13,7 +13,7 @@ getgenv().Config = {
         ["Kick if FPS below"] = 5,
         ["Buy Lucky Block"] = {
             "Secret Lucky Block",
-},
+    },
     ["Performance"] = {
         ["Boost FPS"] = true,
         ["Black Screen"] = true,
