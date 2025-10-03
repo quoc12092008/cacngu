@@ -40,11 +40,11 @@
             AutoFullyMelees = true,
 
             -- Swords 
-            Saber = true,
-            CursedDualKatana = false,
+            Saber = false,
+            CursedDualKatana = true,
 
             -- Guns 
-            SoulGuitar = false,
+            SoulGuitar = true,
 
             -- Upgrades 
 
@@ -52,7 +52,7 @@
 
         },
         Settings = {
-            StayInSea2UntilHaveDarkFragments = false
+            StayInSea2UntilHaveDarkFragments = true
         }
     }
         
