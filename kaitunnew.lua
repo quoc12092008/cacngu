@@ -156,115 +156,386 @@
 
     repeat task.wait() until game.CoreGui
 
-    -- GUI Banana Stats Checker (thay thế GUI cũ)
+    --================= NEW GUI =================--
+    local HopGui = Instance.new("ScreenGui")
+    HopGui.Name = "BananaStatsUI"
+    HopGui.Parent = game:GetService("CoreGui")
+    HopGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    HopGui.IgnoreGuiInset = true 
 
-    local ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.Name = "BananaStatsGui"
-    ScreenGui.Parent = game:GetService("CoreGui")
-
-    -- Thanh trạng thái trên cùng
-    local StatusFrame = Instance.new("Frame", ScreenGui)
-    StatusFrame.AnchorPoint = Vector2.new(0.5, 0)
-    StatusFrame.Position = UDim2.new(0.5, 0, 0.05, 0)
-    StatusFrame.Size = UDim2.new(0, 350, 0, 50)
-    StatusFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
-    StatusFrame.BorderSizePixel = 0
-    StatusFrame.BackgroundTransparency = 0.2
-
-    local StatusText = Instance.new("TextLabel", StatusFrame)
-    StatusText.Size = UDim2.new(1, 0, 1, 0)
-    StatusText.BackgroundTransparency = 1
-    StatusText.Text = "Status : Auto Quest Get Saber"
-    StatusText.Font = Enum.Font.GothamBold
-    StatusText.TextColor3 = Color3.fromRGB(255, 215, 0)
-    StatusText.TextScaled = true
-
-    -- Khung chính
-    local MainFrame = Instance.new("Frame", ScreenGui)
+    -- Main container
+    local MainFrame = Instance.new("Frame")
+    MainFrame.Parent = HopGui
     MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
     MainFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-    MainFrame.Size = UDim2.new(0, 500, 0, 300)
-    MainFrame.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-    MainFrame.BorderColor3 = Color3.fromRGB(255, 200, 0)
-    MainFrame.BorderSizePixel = 2
+    MainFrame.Size = UDim2.new(0, 400, 0, 280)
+    MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 30)
+    MainFrame.BorderSizePixel = 0
+    MainFrame.Visible = true
 
-    -- Tiêu đề
-    local Title = Instance.new("TextLabel", MainFrame)
+    local UICorner = Instance.new("UICorner", MainFrame)
+    UICorner.CornerRadius = UDim.new(0, 12)
+
+    local UIStroke = Instance.new("UIStroke", MainFrame)
+    UIStroke.Color = Color3.fromRGB(0, 255, 200)
+    UIStroke.Thickness = 2
+
+    -- Title
+    local Title = Instance.new("TextLabel")
+    Title.Parent = MainFrame
     Title.Size = UDim2.new(1, 0, 0, 40)
     Title.BackgroundTransparency = 1
-    Title.Text = "Banana Stats Checker"
     Title.Font = Enum.Font.GothamBold
-    Title.TextColor3 = Color3.fromRGB(255, 215, 0)
-    Title.TextScaled = true
+    Title.Text = "🍌 Banana Stats Checker"
+    Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Title.TextSize = 20
 
-    -- Label hiển thị Stats
-    local Stats = Instance.new("TextLabel", MainFrame)
-    Stats.Position = UDim2.new(0, 20, 0, 50)
-    Stats.Size = UDim2.new(0.45, -30, 1, -60)
-    Stats.BackgroundTransparency = 1
-    Stats.TextXAlignment = Enum.TextXAlignment.Left
-    Stats.TextYAlignment = Enum.TextYAlignment.Top
-    Stats.Font = Enum.Font.Gotham
-    Stats.TextColor3 = Color3.fromRGB(255,255,255)
-    Stats.TextSize = 18
-    Stats.Text = "Loading Stats..."
+    -- Layout
+    local Content = Instance.new("Frame", MainFrame)
+    Content.Size = UDim2.new(1, -20, 1, -60)
+    Content.Position = UDim2.new(0, 10, 0, 50)
+    Content.BackgroundTransparency = 1
 
-    -- Label hiển thị Items
-    local Items = Instance.new("TextLabel", MainFrame)
-    Items.Position = UDim2.new(0.5, 20, 0, 50)
-    Items.Size = UDim2.new(0.45, -30, 1, -60)
-    Items.BackgroundTransparency = 1
-    Items.TextXAlignment = Enum.TextXAlignment.Left
-    Items.TextYAlignment = Enum.TextYAlignment.Top
-    Items.Font = Enum.Font.Gotham
-    Items.TextColor3 = Color3.fromRGB(255,255,255)
-    Items.TextSize = 18
-    Items.Text = "Loading Items..."
+    local UIListLayout = Instance.new("UIListLayout", Content)
+    UIListLayout.FillDirection = Enum.FillDirection.Vertical
+    UIListLayout.Padding = UDim.new(0, 6)
 
-    -- Hàm cập nhật Stats
-    local function RefreshStats()
-        local pd = ScriptStorage.PlayerData
-        if not pd then return end
+    -- Function to create rows
+    local function createRow(name)
+        local Row = Instance.new("TextLabel")
+        Row.Parent = Content
+        Row.Size = UDim2.new(1, 0, 0, 26)
+        Row.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+        Row.BorderSizePixel = 0
+        Row.Font = Enum.Font.GothamMedium
+        Row.Text = name .. ": ..."
+        Row.TextColor3 = Color3.fromRGB(200, 200, 200)
+        Row.TextSize = 16
 
-        local level = pd.Level or "?"
-        local race = pd.Race or "?"
-        local beli = pd.Beli or "?"
-        local frag = pd.Fragments or "?"
+        local RowCorner = Instance.new("UICorner", Row)
+        RowCorner.CornerRadius = UDim.new(0, 6)
 
-        Stats.Text = string.format("Account Stats\nLevel: %s\nRace: %s\nBeli: %s\nFrag: %s",
-            tostring(level), tostring(race), tostring(beli), tostring(frag))
+        return Row
     end
 
-    -- Hàm cập nhật Items
-    local function RefreshItems()
-        local bp = ScriptStorage.Backpack
-        if not bp then return end
+    -- Tạo các dòng cần hiển thị
+    local Rows = {
+        MainTextLabel = createRow("Status"),
+        Task1         = createRow("Main Task"),
+        Task2         = createRow("Sub Task"),
+        Currencies    = createRow("Currencies"),
+        Melees        = createRow("Melees"),
+        DebugLine     = createRow("Debug"),
+    }
 
-        local text = "Account Items\n"
-        local importantItems = {
-            "Godhuman", "Cursed Dual Katana", "Valkyrie Helm", "Soul Guitar", "Mirror Fractal", "Pull Lever"
-        }
+    -- Kết nối với Interface.Instances
+    Interface.Instances = Rows
 
-        for _, itemName in ipairs(importantItems) do
-            if bp[itemName] then
-                text = text .. "- " .. itemName .. "\n"
+    --================= END NEW GUI =================--
+
+
+    -- Custom blur effect that can blur other UIs
+    local BlurManager = {}
+
+    function BlurManager:Create()
+        -- Create a new transparent frame that covers the screen
+        local blurFrame = Instance.new("Frame")
+        blurFrame.Name = "BlurFrame"
+        blurFrame.Parent = HopGui
+        blurFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+        blurFrame.BackgroundTransparency = 1 -- Start fully transparent
+        blurFrame.BorderSizePixel = 0
+        blurFrame.Size = UDim2.new(1, 0, 1, 0)
+        blurFrame.Position = UDim2.new(0, 0, 0, 0)
+        blurFrame.ZIndex = 0 -- Behind everything
+        
+        -- Store the reference
+        self.blurFrame = blurFrame
+        self.blurIntensity = 0
+        
+        return self
+    end
+
+    function BlurManager:SetIntensity(intensity)
+        -- Clamp intensity between 0 and 0.95 (0.95 is nearly opaque)
+        intensity = math.clamp(intensity, 0, 0.95)
+        self.blurIntensity = intensity
+        
+        -- Apply the intensity to our blur frame
+        local tweenService = game:GetService("TweenService")
+        local tweenInfo = TweenInfo.new(
+            0.3,                    -- Time
+            Enum.EasingStyle.Cubic, -- Easing style
+            Enum.EasingDirection.Out -- Easing direction
+        )
+        
+        local tween = tweenService:Create(self.blurFrame, tweenInfo, {
+            BackgroundTransparency = 1 - intensity
+        })
+        
+        tween:Play()
+        
+        -- Also apply the actual blur effect in lighting
+        if not self.blurEffect then
+            self.blurEffect = Instance.new("BlurEffect")
+            self.blurEffect.Name = "CustomBlur"
+            self.blurEffect.Parent = game.Lighting
+            self.blurEffect.Enabled = true
+        end
+        
+        local blurSizeTween = tweenService:Create(self.blurEffect, tweenInfo, {
+            Size = intensity * 30 -- Max blur size is 30
+        })
+        
+        blurSizeTween:Play()
+        
+        -- Apply blur to registered UI elements
+        for _, uiElement in pairs(UIReferences) do
+            if uiElement and uiElement.Parent then
+                local uiTween = tweenService:Create(uiElement, tweenInfo, {
+                    BackgroundTransparency = uiElement._originalTransparency + (intensity * 0.5)
+                })
+                uiTween:Play()
             end
         end
-
-        Items.Text = text
     end
 
-    -- Tự động cập nhật mỗi 3 giây
-    task.spawn(function()
-        while task.wait(3) do
-            pcall(function()
-                RefreshStats()
-                RefreshItems()
-            end)
+    function BlurManager:RegisterUI(uiElement)
+        if uiElement and uiElement:IsA("GuiObject") then
+            -- Store the original transparency
+            uiElement._originalTransparency = uiElement.BackgroundTransparency
+            table.insert(UIReferences, uiElement)
         end
+    end
+
+    -- Create our blur manager
+    local blurEffect = BlurManager:Create()
+
+    -- Improved Text Transition Animation
+    function SetText(Name, Text) 
+        task.spawn(function() 
+            local TextIns = Interface.Instances[Name] 
+            if not TextIns then return end
+            
+            if not isVisible then 
+                TextIns.Text = Text 
+                return 
+            end 
+            
+            if TextIns.Text == Text then return end
+            
+            -- Fade out with smoother animation
+            local tweenService = game:GetService("TweenService")
+            local fadeOutInfo = TweenInfo.new(
+                0.3,                 -- Time
+                Enum.EasingStyle.Quad,  -- Easing style
+                Enum.EasingDirection.Out -- Easing direction
+            )
+            
+            local fadeOut = tweenService:Create(TextIns, fadeOutInfo, {
+                TextTransparency = 1,
+                TextStrokeTransparency = 1
+            })
+            
+            fadeOut:Play()
+            fadeOut.Completed:Wait()
+            
+            -- Change text while invisible
+            TextIns.Text = Text
+            
+            -- Fade in with smoother animation
+            local fadeInInfo = TweenInfo.new(
+                0.3,                 -- Time
+                Enum.EasingStyle.Quad,  -- Easing style
+                Enum.EasingDirection.Out -- Easing direction
+            )
+            
+            local fadeIn = tweenService:Create(TextIns, fadeInInfo, {
+                TextTransparency = 0,
+                TextStrokeTransparency = 0
+            })
+            
+            fadeIn:Play()
+        end)
+    end
+
+    local OldExposureCompensation = game:GetService("Lighting").ExposureCompensation
+    -- Enhanced toggle function with improved animations
+    function ToggleUI(State)
+        isToggleOpen = State or not isToggleOpen
+        
+        
+    -- game:GetService("Lighting").ExposureCompensation = State and -math.huge or OldExposureCompensation
+        
+        local contentLabels = {NameHub, MainTextLabel}
+        for _, instance in pairs(Interface.Instances) do
+            table.insert(contentLabels, instance)
+        end
+        
+        local tweenService = game:GetService("TweenService")
+        local tweenInfo = TweenInfo.new(
+            0.5,                    -- Time
+            Enum.EasingStyle.Quart, -- Easing style
+            Enum.EasingDirection.InOut -- Easing direction
+        )
+        
+        if isToggleOpen then
+            -- Show UI
+            ToggleIcon.Text = "👁️"
+            
+            -- Fancy rotation animation for toggle button
+            local rotationTween = tweenService:Create(ToggleIcon, 
+                TweenInfo.new(0.5, Enum.EasingStyle.Back, Enum.EasingDirection.Out), 
+                {Rotation = 360}
+            )
+            rotationTween:Play()
+            rotationTween.Completed:Connect(function()
+                ToggleIcon.Rotation = 0
+            end)
+            
+            -- Animate all elements in
+            for _, label in pairs(contentLabels) do
+                label.TextTransparency = 1
+                
+                local tween = tweenService:Create(label, tweenInfo, {
+                    TextTransparency = 0
+                })
+                
+                if label:FindFirstChildOfClass("UIStroke") then
+                    label:FindFirstChildOfClass("UIStroke").Transparency = 1
+                    
+                    local strokeTween = tweenService:Create(label:FindFirstChildOfClass("UIStroke"), tweenInfo, {
+                        Transparency = 0
+                    })
+                    
+                    strokeTween:Play()
+                end
+                
+                tween:Play()
+            end
+            
+            -- Apply blur effect
+            blurEffect:SetIntensity(0.4) -- 40% blur intensity
+            
+        else
+            -- Hide UI
+            ToggleIcon.Text = "🔍"
+            
+            -- Fancy shrink animation for toggle button
+            local shrinkTween = tweenService:Create(ToggleIcon, 
+                TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.In), 
+                {Size = UDim2.new(0.3, 0, 0.3, 0)}
+            )
+            shrinkTween:Play()
+            shrinkTween.Completed:Connect(function()
+                local growTween = tweenService:Create(ToggleIcon, 
+                    TweenInfo.new(0.3, Enum.EasingStyle.Back, Enum.EasingDirection.Out), 
+                    {Size = UDim2.new(0.7, 0, 0.7, 0)}
+                )
+                growTween:Play()
+            end)
+            
+            -- Animate all elements out
+            for _, label in pairs(contentLabels) do
+                local tween = tweenService:Create(label, tweenInfo, {
+                    TextTransparency = 1
+                })
+                
+                if label:FindFirstChildOfClass("UIStroke") then
+                    local strokeTween = tweenService:Create(label:FindFirstChildOfClass("UIStroke"), tweenInfo, {
+                        Transparency = 1
+                    })
+                    
+                    strokeTween:Play()
+                end
+                
+                tween:Play()
+            end
+            
+            -- Remove blur effect
+            blurEffect:SetIntensity(0) -- 0% blur intensity
+        end
+        
+        isVisible = isToggleOpen
+    end
+
+    -- Function to register an external UI for blurring
+    function Interface.RegisterForBlur(uiElement)
+        blurEffect:RegisterUI(uiElement)
+    end
+
+    -- Configure toggle button click event
+    ToggleButton.MouseButton1Click:Connect(function()
+        ToggleUI()
     end)
 
+    -- Add pulse animation to toggle button on hover
+    ToggleButton.MouseEnter:Connect(function()
+        local tweenService = game:GetService("TweenService")
+        
+        -- Pulse animation
+        local pulseSequence = function()
+            local expandTween = tweenService:Create(ToggleContainer, 
+                TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), 
+                {Size = UDim2.new(0, 55, 0, 55)}
+            )
+            
+            local glowTween = tweenService:Create(ToggleUIStroke, 
+                TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), 
+                {Color = Color3.fromRGB(0, 255, 255), Thickness = 3}
+            )
+            
+            expandTween:Play()
+            glowTween:Play()
+        end
+        
+        pulseSequence()
+    end)
 
+    ToggleButton.MouseLeave:Connect(function()
+        local tweenService = game:GetService("TweenService")
+        local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+        
+        local shrinkTween = tweenService:Create(ToggleContainer, tweenInfo, {
+            Size = UDim2.new(0, 50, 0, 50)
+        })
+        
+        local strokeTween = tweenService:Create(ToggleUIStroke, tweenInfo, {
+            Color = Color3.fromRGB(9, 255, 248),
+            Thickness = 2
+        })
+        
+        shrinkTween:Play()
+        strokeTween:Play()
+    end)
+
+    -- Original toggle interface function (for backward compatibility)
+    function Interface.ToggleInterface(State) 
+        isToggleOpen = State
+        
+        local tweenService = game:GetService("TweenService")
+        local tweenInfo = TweenInfo.new(0.5, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+        
+        if State then
+            HopGui.Enabled = true 
+            ToggleIcon.Text = "👁️"
+            blurEffect:SetIntensity(0.4) -- 40% blur intensity
+        else
+            ToggleIcon.Text = "🔍"
+            blurEffect:SetIntensity(0) -- 0% blur intensity
+        end
+        
+        isVisible = State
+    end
+
+    -- Add a floating animation to the toggle button
+    local function setupFloatingAnimation()
+        
+    end
+
+    setupFloatingAnimation()
+
+    ToggleUI(true)
     -- Export the SetText function and other functions
     Interface.SetText = SetText
     Interface.ToggleUI = ToggleUI
