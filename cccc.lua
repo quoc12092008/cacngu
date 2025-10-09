@@ -213,22 +213,44 @@ local function ScanAllPlots()
 end
 
 ---------------------------------------------------------------------
--- 🧩 Check nếu hết pet (theo đúng tên config)
+-- 🧩 Check nếu hết pet (an toàn hơn, tránh kick nhầm)
 ---------------------------------------------------------------------
+local noPetCount = 0  -- đếm số lần liên tiếp không thấy pet
+
 local function CheckMyPlotEmpty()
 	local myPlot = GetMyPlot()
-	if not myPlot then return true end
-	local normalizedTarget = normalizeName(CurrentPet)
+	if not myPlot then
+		warn("[DEBUG] ⚠️ Không tìm thấy plot của chính bạn.")
+		return false
+	end
+
+	local normalizedTarget = normalizeName(CurrentPet or "")
+	local found = false
 
 	for _, pet in ipairs(myPlot:GetChildren()) do
-		if pet:IsA("Model") and normalizeName(pet.Name) == normalizedTarget then
+		if not pet:IsA("Model") then continue end
+		if normalizeName(pet.Name) == normalizedTarget then
 			print(("[DEBUG] 🐾 Vẫn còn pet hợp lệ trong plot: %s"):format(pet.Name))
-			return false
+			found = true
+			break
 		end
 	end
 
-	print("[DEBUG] ❌ Không tìm thấy pet hợp lệ trong plot của bạn.")
-	return true
+	if found then
+		noPetCount = 0
+		return false
+	else
+		noPetCount += 1
+		print(("[DEBUG] ⚠️ Lần %d không thấy pet hợp lệ."):format(noPetCount))
+	end
+
+	-- Chỉ kick nếu 3 lần liên tiếp không thấy pet
+	if noPetCount >= 3 then
+		print("[DEBUG] ❌ Xác nhận hết pet sau 3 lần kiểm tra.")
+		return true
+	end
+
+	return false
 end
 
 ---------------------------------------------------------------------
