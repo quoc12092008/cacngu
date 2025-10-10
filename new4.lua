@@ -453,7 +453,7 @@ local function DoFarmerJob(job)
 		
 		-- ✨ ĐIỀU CHỈNH CAMERA KHI ĐẾN PET
 		AdjustCameraBehindPlayer(targetPos)
-		task.wait(0.5)  -- Đợi camera ổn định
+		task.wait(1)  -- Đợi camera ổn định
 		
 		statusText.Text = "Status : Holding E on " .. job.pet_name
 		HoldKeyEReal(HoldTime)
