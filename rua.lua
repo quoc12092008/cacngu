@@ -11,12 +11,43 @@ getgenv().Config = {
     ["Misc"] = {
         ["Kick if Ping above"] = 10000,
         ["Kick if FPS below"] = 3,
-        ["Ignore Secret"] = {},
+        ["Ignore Secret"] = {
+            ["Sammyni Spyderini"] = {
+                "All",
+            },
+            ["Job Job Job Sahur"] = {
+                "All",
+            },
+            ["Zombie Tralala"] = {
+                "All",
+            },
+            ["La Cucaracha"] = {
+                "All",
+            },
+            ["Chachechi"] = {
+                "All",
+            },
+            ["Dul Dul Dul"] = {
+                "All",
+            },
+            ["Karkerkar Kurkur"] = {
+                "All",
+            },
+            ["Los Tralaleritos"] = {
+                "All",
+            },
+            ["La Vacca Saturno Saturnita"] = {
+                "All",
+            },
+            ["Las Tralaleritas"] = {
+                "All",
+            },
+        },
         ["Buy Lucky Block"] = {
             "Admin Lucky Block",
             "Secret Lucky Block",
             "Taco Lucky Block",
-            "Los Lucky Block",
+            "Los Lucky Blocks",
         },
        ["Open Lucky Block"] = {
             "Taco Lucky Block",
@@ -95,6 +126,17 @@ getgenv().Config = {
                 "Bloodrot",
                 "Yin Yang",
             },
+            ["Zombie Tralala"] = {
+                "Normal",
+                "Galaxy",
+                "Lava",
+                "Gold",
+                "Diamond",
+                "Candy",
+                "Rainbow",
+                "Bloodrot",
+                "Yin Yang",
+            },
             ["Job Job Job Sahur"] = {
                 "Normal",
                 "Galaxy",
@@ -121,3 +163,6 @@ getgenv().Config = {
     }
 }
 spawn(function() task.wait(300) if not getgenv().scriptLoaded then game.Players.LocalPlayer:Kick("Script load timeout\nKick to prevent animal gets stolen") end end) repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(20)until getgenv().Joebiden
+
+
+
