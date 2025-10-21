@@ -51,6 +51,8 @@ getgenv().Config = {
         },
        ["Open Lucky Block"] = {
             "Taco Lucky Block",
+            "Los Lucky Blocks", 
+            "Admin Lucky Block",            
        }
     },
     ["Performance"] = {
@@ -59,7 +61,7 @@ getgenv().Config = {
     },
     ["Webhook"] = {
         ["Enable"] = true,
-        ["Url"] = "https://discord.com/api/webhooks/1424768211152404656/IoFIl-0mtqsui9i61NdpNhoGIY7Dlz7z8BMTXAxK3NfN2n6jVEQ3aKAoR4CMqpLLp0Wy",
+        ["Url"] = "https://discord.com/api/webhooks/1391084727473012816/6BMquLQMse3mUQYmnf2zYxjCRaWfD9-5T9Qs7Rgeq5iqUv-Dgcf4PmBfGfSvdb8nwdAR",
         ["Discord UserID"] = "600936810092167179",
         ["Ignore Notify"] = {
             ["La Vacca Saturno Saturnita"] = {
@@ -163,4 +165,6 @@ getgenv().Config = {
     }
 }
 spawn(function() task.wait(300) if not getgenv().scriptLoaded then game.Players.LocalPlayer:Kick("Script load timeout\nKick to prevent animal gets stolen") end end) repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(20)until getgenv().Joebiden
+
+
 
