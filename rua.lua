@@ -61,7 +61,7 @@ getgenv().Config = {
     },
     ["Webhook"] = {
         ["Enable"] = true,
-        ["Url"] = "https://discord.com/api/webhooks/1391084727473012816/6BMquLQMse3mUQYmnf2zYxjCRaWfD9-5T9Qs7Rgeq5iqUv-Dgcf4PmBfGfSvdb8nwdAR",
+        ["Url"] = "https://discord.com/api/webhooks/1424768211152404656/IoFIl-0mtqsui9i61NdpNhoGIY7Dlz7z8BMTXAxK3NfN2n6jVEQ3aKAoR4CMqpLLp0Wy",
         ["Discord UserID"] = "600936810092167179",
         ["Ignore Notify"] = {
             ["La Vacca Saturno Saturnita"] = {
