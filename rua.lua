@@ -48,11 +48,10 @@ getgenv().Config = {
             "Secret Lucky Block",
             "Taco Lucky Block",
             "Los Lucky Blocks",
+            "Spooky Lucky Block",
         },
        ["Open Lucky Block"] = {
             "Taco Lucky Block",
-            "Los Lucky Blocks", 
-            "Admin Lucky Block",            
        }
     },
     ["Performance"] = {
@@ -165,6 +164,7 @@ getgenv().Config = {
     }
 }
 spawn(function() task.wait(300) if not getgenv().scriptLoaded then game.Players.LocalPlayer:Kick("Script load timeout\nKick to prevent animal gets stolen") end end) repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(20)until getgenv().Joebiden
+
 
 
 
