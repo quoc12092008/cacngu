@@ -172,5 +172,3 @@ spawn(function() task.wait(300) if not getgenv().scriptLoaded then game.Players.
 
 
 
-
-
