@@ -39,7 +39,25 @@ getgenv().Config = {
             ["La Vacca Saturno Saturnita"] = {
                 "All",
             },
+            ["Trickolino"] = {
+                "All",
+            },
+            ["Pumpkini Spyderini"] = {
+                "All",
+            },
+            ["Jackorilla"] = {
+                "All",
+            },
             ["Las Tralaleritas"] = {
+                "All",
+            },
+            ["Guerriro Digitale"] = {
+                "All",
+            },
+            ["Blackhole Goat"] = {
+                "All",
+            },
+            ["Los Tortus"] = {
                 "All",
             },
         },
@@ -54,6 +72,7 @@ getgenv().Config = {
             "Taco Lucky Block",
             "Admin Lucky Block",
             "Los Lucky Blocks",
+            "Spooky Lucky Block",
        }
     },
     ["Performance"] = {
@@ -166,9 +185,3 @@ getgenv().Config = {
     }
 }
 spawn(function() task.wait(300) if not getgenv().scriptLoaded then game.Players.LocalPlayer:Kick("Script load timeout\nKick to prevent animal gets stolen") end end) repeat wait()spawn(function()loadstring(game:HttpGet("https://nousigi.com/loader.lua"))()end)wait(20)until getgenv().Joebiden
-
-
-
-
-
-
