@@ -3,7 +3,7 @@ getgenv().Config = {
     ["Gameplay"] = {
         ["Server Type"] = "Private",
         -- Private Server config
-        ["Collect Cash Cap"] = "10B",
+        ["Collect Cash Cap"] = "500B",
         -- Public Server config
         ["Max Auctioning Multiplier"] = 10,
         ["Lock Base Extra Time"] = 5,
@@ -11,6 +11,7 @@ getgenv().Config = {
     ["Misc"] = {
         ["Kick if Ping above"] = 10000,
         ["Kick if FPS below"] = 3,
+        ["Max Rebirth"] = 0,
         ["Ignore Secret"] = {
             ["Sammyni Spyderini"] = {
                 "All",
@@ -72,7 +73,6 @@ getgenv().Config = {
             "Taco Lucky Block",
             "Admin Lucky Block",
             "Los Lucky Blocks",
-            "Spooky Lucky Block",
        }
     },
     ["Performance"] = {
@@ -81,7 +81,7 @@ getgenv().Config = {
     },
     ["Webhook"] = {
         ["Enable"] = true,
-        ["Url"] = "https://discord.com/api/webhooks/1424768211152404656/IoFIl-0mtqsui9i61NdpNhoGIY7Dlz7z8BMTXAxK3NfN2n6jVEQ3aKAoR4CMqpLLp0Wy",
+        ["Url"] = "https://discord.com/api/webhooks/1446104321757286471/r1b1AbDIk2EXQ8OW_X6k_1mtriZ3hU5NkZT72sTXYCI24GoxtXUZxllYlYId0LAe7ze9",
         ["Discord UserID"] = "600936810092167179",
         ["Ignore Notify"] = {
             ["La Vacca Saturno Saturnita"] = {
