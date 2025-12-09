@@ -11,7 +11,6 @@ getgenv().Config = {
     ["Misc"] = {
         ["Kick if Ping above"] = 10000,
         ["Kick if FPS below"] = 3,
-        ["Max Rebirth"] = 0,
         ["Ignore Secret"] = {
             ["Sammyni Spyderini"] = {
                 "All",
