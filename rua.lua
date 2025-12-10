@@ -11,6 +11,7 @@ getgenv().Config = {
     ["Misc"] = {
         ["Kick if Ping above"] = 10000,
         ["Kick if FPS below"] = 3,
+        ["Max Rebirth"] = 10,
         ["Ignore Secret"] = {
             ["Sammyni Spyderini"] = {
                 "All",
@@ -67,6 +68,7 @@ getgenv().Config = {
             "Taco Lucky Block",
             "Los Lucky Blocks",
             "Spooky Lucky Block",
+            "Festive Lucky Block",
         },
        ["Open Lucky Block"] = {
             "Taco Lucky Block",
