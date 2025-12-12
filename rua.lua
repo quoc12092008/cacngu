@@ -74,6 +74,7 @@ getgenv().Config = {
             "Taco Lucky Block",
             "Admin Lucky Block",
             "Los Lucky Blocks",
+            "Festive Lucky Block",
        }
     },
     ["Performance"] = {
