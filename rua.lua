@@ -15,7 +15,7 @@ getgenv().Config = {
         ["Rare Animal Generation"] = "10M",
         ["Only keep Secret if Cash Cap"] = true,
         ["Auto Fuse"] = {
-            ["Enable"] = true,
+            ["Enable"] = false,
             ["Fuse Animal"] = {
                 ["Dul Dul Dul"] = {
                         "All",
