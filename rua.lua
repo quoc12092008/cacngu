@@ -12,6 +12,67 @@ getgenv().Config = {
         ["Kick if Ping above"] = 10000,
         ["Kick if FPS below"] = 3,
         ["Max Rebirth"] = 10,
+        ["Rare Animal Generation"] = "10M",
+        ["Only keep Secret if Cash Cap"] = true,
+        ["Auto Fuse"] = {
+            ["Enable"] = true,
+            ["Fuse Animal"] = {
+                ["Dul Dul Dul"] = {
+                        "All",
+                },
+                ["Santa Hotspot"] = {
+                        "All",
+                },
+                ["Triplito Tralaleritos"] = {
+                        "All",
+                },
+                ["La Vacca Prese Presente"] = {
+                        "All",
+                },
+                ["La Cucaracha"] = {
+                        "All",
+                },
+                ["Guerriro Digitale"] = {
+                        "All",
+                },
+                ["Chachechi"] = {
+                        "All",
+                },
+                ["Las Tralaleritas"] = {
+                        "All",
+                },
+                ["To to to Sahur"] = {
+                        "All",
+                },
+                ["Los Tralaleritos"] = {
+                        "All",
+                },
+                ["Ho Ho Ho Sahur"] = {
+                        "All",
+                },
+                ["Sammyni Spyderini"] = {
+                        "All",
+                },
+                ["La Vacca Saturno Saturnita"] = {
+                        "All",
+                },
+                ["Job Job Job Sahur"] = {
+                        "All",
+                },
+                ["Los Tortus"] = {
+                        "All",
+                },
+                ["Quesadilla Crocodila"] = {
+                        "All",
+                },
+                ["Los Jobcitos"] = {
+                        "All",
+                },
+                ["Burrito Bandito"] = {
+                        "All",
+                },
+            },
+        },
         ["Ignore Secret"] = {
             ["Sammyni Spyderini"] = {
                 "All",
@@ -74,7 +135,6 @@ getgenv().Config = {
             "Taco Lucky Block",
             "Admin Lucky Block",
             "Los Lucky Blocks",
-            "Festive Lucky Block",
        }
     },
     ["Performance"] = {
