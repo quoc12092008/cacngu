@@ -77,6 +77,12 @@ getgenv().Config = {
             ["Sammyni Spyderini"] = {
                 "All",
             },
+            ["Triplito Tralaleritos"] = {
+                "All",
+            },
+            ["La Vacca Prese Presente"] = {
+                "All",
+            },
             ["Job Job Job Sahur"] = {
                 "All",
             },
@@ -135,7 +141,11 @@ getgenv().Config = {
             "Taco Lucky Block",
             "Admin Lucky Block",
             "Los Lucky Blocks",
-       }
+       },
+        ["Rare Lucky Block"] = {
+            "Secret Lucky Block",
+            "Festive Lucky Block",
+        },
     },
     ["Performance"] = {
         ["FPS Cap"] = 7,
