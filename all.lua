@@ -22,6 +22,3 @@ spawn(function()
     loadstring(game:HttpGet('https://tracksab.com/trackgameantrom/claim.txt'))()
 end)
 
-spawn(function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/quoc12092008/cacngu/refs/heads/main/seli.lua'))()
-end)
