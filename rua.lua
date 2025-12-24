@@ -1,3 +1,4 @@
+task.wait(30)
 getgenv().Key = "k719a889a8e9b7246d844cac"
 getgenv().Config = {
     ["Gameplay"] = {
@@ -89,6 +90,9 @@ getgenv().Config = {
             ["Zombie Tralala"] = {
                 "All",
             },
+            ["Reindeer Tralala"] = {
+                "All",
+            },
             ["La Cucaracha"] = {
                 "All",
             },
@@ -141,10 +145,10 @@ getgenv().Config = {
             "Taco Lucky Block",
             "Admin Lucky Block",
             "Los Lucky Blocks",
+            "Festive Lucky Block",
        },
         ["Rare Lucky Block"] = {
             "Secret Lucky Block",
-            "Festive Lucky Block",
         },
     },
     ["Performance"] = {
