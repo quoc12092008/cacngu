@@ -1,4 +1,3 @@
-task.wait(30)
 getgenv().Key = "k719a889a8e9b7246d844cac"
 getgenv().Config = {
     ["Gameplay"] = {
