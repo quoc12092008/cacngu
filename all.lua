@@ -6,4 +6,6 @@ spawn(function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/LoiSprite/Map-dit/refs/heads/main/LockFPS.lua'))()
 end)
 
-
+spawn(function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/LoiSprite/Map-dit/refs/heads/main/ngu.lua'))()
+end)
