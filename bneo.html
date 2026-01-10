@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Tracker - Login</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        *, ::before, ::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --card-bg: rgba(20, 20, 23, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary-glow: rgba(99, 102, 241, 0.5);
+            --scan-color: #00ff88;
+            --scan-glow: rgba(0, 255, 136, 0.5);
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background-color: #000000;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 100%, hsla(225,39%,20%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
+            background-attachment: fixed;
+            color: #e4e4e7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Input Styles */
+        .modern-input {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            color: white;
+            transition: all 0.3s ease;
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 2.75rem;
+            border-radius: 0.75rem;
+            font-size: 0.875rem;
+        }
+        
+        .modern-input:focus {
+            background: rgba(0, 0, 0, 0.5);
+            border-color: #6366f1;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+            outline: none;
+        }
+
+        .modern-input::placeholder {
+            color: rgb(75 85 99);
+        }
+
+        /* Button Styles */
+        .btn-primary {
+            background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(79, 70, 229, 0.4);
+            width: 100%;
+            padding: 0.875rem;
+            border-radius: 0.75rem;
+            color: white;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.025em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(79, 70, 229, 0.6);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary:disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        /* Custom Icon Glow */
+        .icon-glow-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .icon-glow {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: var(--primary-glow);
+            filter: blur(40px);
+            border-radius: 50%;
+            z-index: 0;
+            animation: pulse-glow 3s infinite;
+        }
+
+        .icon-box {
+            width: 4rem;
+            height: 4rem;
+            background: linear-gradient(to top right, #6366f1, #9333ea);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Success State for Button */
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #059669) !important;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.4) !important;
+            pointer-events: none;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            border-top: 2px solid white;
+            width: 18px;
+            height: 18px;
+            animation: spin 0.8s linear infinite;
+        }
+        
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.6); }
+        }
+
+        /* Shake Animation for Error */
+        .shake { animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both; }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Background orbs */
+        .bg-orb {
+            position: absolute;
+            width: 24rem;
+            height: 24rem;
+            border-radius: 50%;
+            filter: blur(64px);
+            pointer-events: none;
+        }
+
+        .hidden { display: none; }
+
+        /* ==================== FACE ID SCANNER STYLES ==================== */
+        .faceid-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .faceid-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scanner-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            color: var(--scan-color);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeInDown 0.5s ease 0.3s forwards;
+        }
+
+        @keyframes fadeInDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .scanner-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+        }
+
+        /* Outer rotating frame */
+        .scanner-frame-outer {
+            position: absolute;
+            inset: -20px;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            background: linear-gradient(135deg, transparent 40%, var(--scan-color) 50%, transparent 60%) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: rotateFrame 3s linear infinite;
+        }
+
+        @keyframes rotateFrame {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Corner brackets */
+        .corner-bracket {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--scan-color);
+            z-index: 10;
+        }
+        .corner-bracket.tl { top: 0; left: 0; border-right: none; border-bottom: none; border-radius: 10px 0 0 0; }
+        .corner-bracket.tr { top: 0; right: 0; border-left: none; border-bottom: none; border-radius: 0 10px 0 0; }
+        .corner-bracket.bl { bottom: 0; left: 0; border-right: none; border-top: none; border-radius: 0 0 0 10px; }
+        .corner-bracket.br { bottom: 0; right: 0; border-left: none; border-top: none; border-radius: 0 0 10px 0; }
+
+        /* Face container */
+        .face-container {
+            position: absolute;
+            inset: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .face-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) brightness(0.8);
+            transition: filter 1s ease;
+        }
+
+        .face-image.scanning {
+            filter: grayscale(100%) brightness(1) contrast(1.1);
+        }
+
+        .face-image.success {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        /* Scan line effect */
+        .scan-line {
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--scan-color), transparent);
+            box-shadow: 0 0 20px var(--scan-glow), 0 0 40px var(--scan-glow);
+            opacity: 0;
+            z-index: 20;
+        }
+
+        .scan-line.active {
+            opacity: 1;
+            animation: scanMove 2s ease-in-out infinite;
+        }
+
+        @keyframes scanMove {
+            0% { top: 20px; }
+            50% { top: calc(100% - 23px); }
+            100% { top: 20px; }
+        }
+
+        /* Grid overlay */
+        .grid-overlay {
+            position: absolute;
+            inset: 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            z-index: 15;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .grid-overlay.active {
+            opacity: 1;
+        }
+
+        .grid-pattern {
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(var(--scan-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--scan-color) 1px, transparent 1px);
+            background-size: 15px 15px;
+            opacity: 0.15;
+            animation: gridPulse 1s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.25; }
+        }
+
+        /* Face mesh dots */
+        .face-mesh {
+            position: absolute;
+            inset: 0;
+            z-index: 16;
+        }
+
+        .mesh-dot {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--scan-color);
+            border-radius: 50%;
+            opacity: 0;
+            box-shadow: 0 0 6px var(--scan-glow);
+        }
+
+        .mesh-dot.active {
+            animation: dotPop 0.3s ease forwards;
+        }
+
+        @keyframes dotPop {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.5); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* Connection lines */
+        .mesh-lines {
+            position: absolute;
+            inset: 0;
+            z-index: 15;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .mesh-lines.active {
+            opacity: 0.4;
+        }
+
+        .mesh-lines svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .mesh-lines path {
+            stroke: var(--scan-color);
+            stroke-width: 1;
+            fill: none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawLine 2s ease forwards;
+        }
+
+        @keyframes drawLine {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Progress ring */
+        .progress-ring {
+            position: absolute;
+            inset: -5px;
+            z-index: 5;
+        }
+
+        .progress-ring circle {
+            fill: none;
+            stroke-width: 2;
+            transform: rotate(-90deg);
+            transform-origin: center;
+        }
+
+        .progress-ring .bg {
+            stroke: rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-ring .progress {
+            stroke: var(--scan-color);
+            stroke-linecap: round;
+            stroke-dasharray: 880;
+            stroke-dashoffset: 880;
+            filter: drop-shadow(0 0 6px var(--scan-glow));
+            transition: stroke-dashoffset 0.1s linear;
+        }
+
+        /* Status text */
+        .scanner-status {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.875rem;
+            color: var(--scan-color);
+            margin-top: 2rem;
+            text-align: center;
+            min-height: 60px;
+        }
+
+        .status-text {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 0.3s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .status-percentage {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 0.5rem;
+            text-shadow: 0 0 20px var(--scan-glow);
+        }
+
+        /* Success state */
+        .scanner-success {
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.5s ease;
+        }
+
+        .scanner-success.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 0 40px rgba(16, 185, 129, 0.5);
+        }
+
+        .success-icon svg {
+            width: 40px;
+            height: 40px;
+            color: white;
+            stroke-dasharray: 50;
+            stroke-dashoffset: 50;
+        }
+
+        .success-icon.animate svg {
+            animation: checkDraw 0.5s ease forwards;
+        }
+
+        @keyframes checkDraw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        .success-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.25rem;
+            color: #10b981;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+        }
+
+        /* Particle effects */
+        .particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: var(--scan-color);
+            border-radius: 50%;
+            opacity: 0;
+        }
+
+        .particle.active {
+            animation: particleFloat 1.5s ease-out forwards;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0);
+            }
+        }
+
+        /* Glitch effect on success */
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0); filter: hue-rotate(0deg); }
+            92% { transform: translate(-2px, 2px); filter: hue-rotate(90deg); }
+            94% { transform: translate(2px, -2px); filter: hue-rotate(-90deg); }
+            96% { transform: translate(-2px, -2px); filter: hue-rotate(180deg); }
+            98% { transform: translate(2px, 2px); filter: hue-rotate(-180deg); }
+        }
+
+        .glitch {
+            animation: glitch 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background orbs -->
+    <div style="position: fixed; inset: 0; pointer-events: none;">
+        <div class="bg-orb animate-float" style="top: 0; left: 25%; background: rgba(79, 70, 229, 0.1);"></div>
+        <div class="bg-orb animate-float" style="bottom: 0; right: 25%; background: rgba(147, 51, 234, 0.1); animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Login Card -->
+    <div style="position: relative; width: 100%; max-width: 28rem; padding: 1rem;">
+        <div class="glass-card" style="border-radius: 1rem; padding: 2rem; position: relative; overflow: hidden;">
+            
+            <div style="text-align: center; margin-bottom: 2rem; position: relative; z-index: 10;">
+                <div class="icon-glow-container animate-float">
+                    <div class="icon-glow"></div>
+                    <div class="icon-box">
+                        <svg style="width: 2rem; height: 2rem; color: white;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
+                    </div>
+                </div>
+                
+                <h1 style="font-size: 1.875rem; font-weight: 700; color: white; margin-bottom: 0.5rem; letter-spacing: -0.025em;">Welcome Back</h1>
+                <p style="color: #9ca3af; font-size: 0.875rem;">Enter your access key to continue</p>
+            </div>
+
+            <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.5rem; position: relative; z-index: 10;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <label for="keyInput" style="font-size: 0.75rem; font-weight: 600; color: #a5b4fc; text-transform: uppercase; letter-spacing: 0.05em; margin-left: 0.25rem;">Access Key</label>
+                    <div style="position: relative;">
+                        <div style="position: absolute; top: 0; bottom: 0; left: 0; padding-left: 1rem; display: flex; align-items: center; pointer-events: none;">
+                            <svg style="height: 1.25rem; width: 1.25rem; color: #6b7280;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                            </svg>
+                        </div>
+                        <input type="password" id="keyInput" class="modern-input" placeholder="xxxx-xxxx-xxxx-xxxx" required autocomplete="off">
+                    </div>
+                </div>
+
+                <button type="submit" id="loginBtn" class="btn-primary">
+                    <span>Access Dashboard</span>
+                    <svg style="width: 1rem; height: 1rem;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </button>
+            </form>
+
+            <div id="errorMessage" class="hidden" style="margin-top: 1.5rem; padding: 0.75rem; border-radius: 0.5rem; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); display: flex; align-items: center; gap: 0.75rem;">
+                <svg style="width: 1.25rem; height: 1.25rem; color: #f87171; flex-shrink: 0;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span style="font-size: 0.75rem; font-weight: 500; color: #fecaca;" id="errorText">Error message</span>
+            </div>
+
+            <div id="keyInfo" class="hidden" style="margin-top: 1.5rem;">
+                <div style="padding: 1rem; border-radius: 0.75rem; background: rgba(16, 185, 129, 0.05); border: 1px solid rgba(16, 185, 129, 0.2); text-align: center;">
+                    <p style="color: #34d399; font-size: 0.875rem; font-weight: 700; margin-bottom: 0.5rem;">Access Granted</p>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #9ca3af; border-top: 1px solid rgba(16, 185, 129, 0.1); padding-top: 0.5rem; margin-top: 0.5rem;">
+                        <span>Slots: <strong id="keySlots" style="color: #e5e7eb;">0</strong></span>
+                        <span>Expires: <strong id="keyExpiry" style="color: #e5e7eb;">-</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; text-align: center;">
+                <p style="font-size: 0.75rem; color: #4b5563; font-weight: 500;">Pet Tracker Pro © 2025</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Face ID Scanner Overlay -->
+    <div class="faceid-overlay" id="faceidOverlay">
+        <div class="scanner-title" id="scannerTitle">BIOMETRIC VERIFICATION</div>
+        
+        <div class="scanner-container" id="scannerContainer">
+            <!-- Corner brackets -->
+            <div class="corner-bracket tl"></div>
+            <div class="corner-bracket tr"></div>
+            <div class="corner-bracket bl"></div>
+            <div class="corner-bracket br"></div>
+            
+            <!-- Progress ring -->
+            <svg class="progress-ring" viewBox="0 0 290 290">
+                <circle class="bg" cx="145" cy="145" r="140"></circle>
+                <circle class="progress" id="progressCircle" cx="145" cy="145" r="140"></circle>
+            </svg>
+            
+            <!-- Outer rotating frame -->
+            <div class="scanner-frame-outer"></div>
+            
+            <!-- Face container -->
+            <div class="face-container">
+                <img src="/public/image.png" 
+                     alt="Face" 
+                     class="face-image" 
+                     id="faceImage">
+            </div>
+            
+            <!-- Scan line -->
+            <div class="scan-line" id="scanLine"></div>
+            
+            <!-- Grid overlay -->
+            <div class="grid-overlay" id="gridOverlay">
+                <div class="grid-pattern"></div>
+            </div>
+            
+            <!-- Face mesh dots -->
+            <div class="face-mesh" id="faceMesh"></div>
+            
+            <!-- Mesh connection lines -->
+            <div class="mesh-lines" id="meshLines">
+                <svg viewBox="0 0 240 240">
+                    <path d="M120,30 L80,70 L60,120 L80,170 L120,210 L160,170 L180,120 L160,70 Z"></path>
+                    <path d="M90,90 L120,80 L150,90 L150,110 L120,120 L90,110 Z"></path>
+                    <path d="M70,140 L90,130 L110,140 L110,160 L90,170 L70,160 Z"></path>
+                    <path d="M130,140 L150,130 L170,140 L170,160 L150,170 L130,160 Z"></path>
+                    <path d="M100,180 L120,170 L140,180 L140,200 L120,210 L100,200 Z"></path>
+                </svg>
+            </div>
+            
+            <!-- Particles -->
+            <div class="particles" id="particles"></div>
+        </div>
+        
+        <!-- Status -->
+        <div class="scanner-status" id="scannerStatus">
+            <div class="status-text" id="statusText">Initializing scanner...</div>
+            <div class="status-percentage" id="statusPercentage">0%</div>
+        </div>
+        
+        <!-- Success state (hidden initially) -->
+        <div class="scanner-success" id="scannerSuccess">
+            <div class="success-icon" id="successIcon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <div class="success-text">Identity Verified</div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration  
+        const BASE_PATH = "/trackgameantrom";
+        const API_BASE_URL = window.location.origin + BASE_PATH;
+
+        // Face mesh dot positions (relative percentages)
+        const meshDotPositions = [
+            // Forehead
+            {x: 50, y: 15}, {x: 35, y: 20}, {x: 65, y: 20},
+            // Eyes area
+            {x: 35, y: 35}, {x: 45, y: 35}, {x: 55, y: 35}, {x: 65, y: 35},
+            {x: 30, y: 40}, {x: 40, y: 40}, {x: 50, y: 40}, {x: 60, y: 40}, {x: 70, y: 40},
+            // Nose
+            {x: 50, y: 50}, {x: 45, y: 55}, {x: 55, y: 55}, {x: 50, y: 60},
+            // Cheeks
+            {x: 25, y: 55}, {x: 75, y: 55}, {x: 20, y: 65}, {x: 80, y: 65},
+            // Mouth area
+            {x: 40, y: 70}, {x: 50, y: 70}, {x: 60, y: 70},
+            {x: 35, y: 75}, {x: 45, y: 75}, {x: 55, y: 75}, {x: 65, y: 75},
+            // Jaw
+            {x: 30, y: 80}, {x: 50, y: 85}, {x: 70, y: 80},
+            {x: 25, y: 70}, {x: 75, y: 70}
+        ];
+
+        function createMeshDots() {
+            const container = document.getElementById('faceMesh');
+            container.innerHTML = '';
+            meshDotPositions.forEach((pos, i) => {
+                const dot = document.createElement('div');
+                dot.className = 'mesh-dot';
+                dot.style.left = `${pos.x}%`;
+                dot.style.top = `${pos.y}%`;
+                dot.style.transform = 'translate(-50%, -50%)';
+                dot.dataset.index = i;
+                container.appendChild(dot);
+            });
+        }
+
+        function createParticles() {
+            const container = document.getElementById('particles');
+            container.innerHTML = '';
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.setProperty('--tx', `${(Math.random() - 0.5) * 100}px`);
+                particle.style.setProperty('--ty', `${(Math.random() - 0.5) * 100}px`);
+                container.appendChild(particle);
+            }
+        }
+
+        function animateMeshDots() {
+            const dots = document.querySelectorAll('.mesh-dot');
+            dots.forEach((dot, i) => {
+                setTimeout(() => {
+                    dot.classList.add('active');
+                }, i * 50);
+            });
+        }
+
+        function activateParticles() {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, i) => {
+                setTimeout(() => {
+                    particle.classList.add('active');
+                }, i * 30);
+            });
+        }
+
+        async function showFaceIDScanner(keyValidated, keyInfo) {
+            const overlay = document.getElementById('faceidOverlay');
+            const scanLine = document.getElementById('scanLine');
+            const gridOverlay = document.getElementById('gridOverlay');
+            const meshLines = document.getElementById('meshLines');
+            const faceImage = document.getElementById('faceImage');
+            const progressCircle = document.getElementById('progressCircle');
+            const statusText = document.getElementById('statusText');
+            const statusPercentage = document.getElementById('statusPercentage');
+            const scannerContainer = document.getElementById('scannerContainer');
+            const scannerStatus = document.getElementById('scannerStatus');
+            const scannerSuccess = document.getElementById('scannerSuccess');
+            const successIcon = document.getElementById('successIcon');
+
+            createMeshDots();
+            createParticles();
+
+            // Show overlay
+            overlay.classList.add('active');
+
+            const circumference = 2 * Math.PI * 140;
+            progressCircle.style.strokeDasharray = circumference;
+            progressCircle.style.strokeDashoffset = circumference;
+
+            const statusMessages = [
+                { text: "Initializing scanner...", percent: 0 },
+                { text: "Detecting face...", percent: 15 },
+                { text: "Mapping facial features...", percent: 30 },
+                { text: "Analyzing biometric data...", percent: 50 },
+                { text: "Verifying identity...", percent: 70 },
+                { text: "Cross-referencing database...", percent: 85 },
+                { text: "Finalizing verification...", percent: 95 }
+            ];
+
+            // Start scanning animation
+            await new Promise(r => setTimeout(r, 500));
+            scanLine.classList.add('active');
+            faceImage.classList.add('scanning');
+
+            await new Promise(r => setTimeout(r, 500));
+            gridOverlay.classList.add('active');
+
+            await new Promise(r => setTimeout(r, 300));
+            animateMeshDots();
+
+            await new Promise(r => setTimeout(r, 500));
+            meshLines.classList.add('active');
+
+            // Progress animation
+            let currentProgress = 0;
+            let messageIndex = 0;
+
+            const progressInterval = setInterval(() => {
+                currentProgress += 1;
+                const offset = circumference - (currentProgress / 100) * circumference;
+                progressCircle.style.strokeDashoffset = offset;
+                statusPercentage.textContent = `${currentProgress}%`;
+
+                if (messageIndex < statusMessages.length && currentProgress >= statusMessages[messageIndex].percent) {
+                    statusText.textContent = statusMessages[messageIndex].text;
+                    statusText.style.animation = 'none';
+                    statusText.offsetHeight;
+                    statusText.style.animation = 'fadeInUp 0.3s ease forwards';
+                    messageIndex++;
+                }
+
+                if (currentProgress >= 100) {
+                    clearInterval(progressInterval);
+                    showSuccess();
+                }
+            }, 30);
+
+            async function showSuccess() {
+                // Hide scanner elements
+                scanLine.classList.remove('active');
+                gridOverlay.classList.remove('active');
+                meshLines.classList.remove('active');
+                
+                // Glitch effect
+                faceImage.classList.add('glitch');
+                await new Promise(r => setTimeout(r, 300));
+                faceImage.classList.remove('glitch');
+                faceImage.classList.remove('scanning');
+                faceImage.classList.add('success');
+
+                // Particle burst
+                activateParticles();
+
+                await new Promise(r => setTimeout(r, 500));
+
+                // Hide scanner, show success
+                scannerContainer.style.opacity = '0';
+                scannerContainer.style.transform = 'scale(0.8)';
+                scannerStatus.style.opacity = '0';
+
+                await new Promise(r => setTimeout(r, 300));
+                
+                scannerContainer.style.display = 'none';
+                scannerStatus.style.display = 'none';
+                
+                scannerSuccess.classList.add('active');
+                
+                await new Promise(r => setTimeout(r, 200));
+                successIcon.classList.add('animate');
+
+                // Show key info on main page
+                document.getElementById('keySlots').textContent = keyInfo.slots || '-';
+                document.getElementById('keyExpiry').textContent = keyInfo.expiry ? new Date(keyInfo.expiry).toLocaleDateString() : '-';
+                document.getElementById('keyInfo').classList.remove('hidden');
+
+                // Update button
+                const btn = document.getElementById('loginBtn');
+                btn.innerHTML = `<svg style="width: 1.25rem; height: 1.25rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Verified!`;
+                btn.classList.add('btn-success');
+
+                await new Promise(r => setTimeout(r, 1500));
+                
+                // Redirect
+                window.location.href = `${BASE_PATH}/dashboard.html`;
+            }
+        }
+
+        function checkExistingAuth() {
+            const storedKey = localStorage.getItem('petTrackerKey');
+            const storedKeyInfo = localStorage.getItem('petTrackerKeyInfo');
+            if (storedKey && storedKeyInfo) {
+                try {
+                    const keyInfo = JSON.parse(storedKeyInfo);
+                    if (new Date(keyInfo.expiry) > new Date()) {
+                        window.location.href = `${BASE_PATH}/dashboard.html`;
+                        return true;
+                    } else {
+                        localStorage.removeItem('petTrackerKey');
+                        localStorage.removeItem('petTrackerKeyInfo');
+                    }
+                } catch (e) { localStorage.clear(); }
+            }
+            return false;
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            document.getElementById('errorText').textContent = message;
+            errorDiv.classList.remove('hidden');
+            errorDiv.style.display = 'flex';
+            
+            const card = document.querySelector('.glass-card');
+            card.classList.remove('shake');
+            void card.offsetWidth;
+            card.classList.add('shake');
+        }
+
+        function hideError() { 
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.classList.add('hidden');
+            errorDiv.style.display = 'none';
+        }
+
+        async function login(key) {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/auth/validate`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ key: key })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    localStorage.setItem('petTrackerKey', key);
+                    localStorage.setItem('petTrackerKeyInfo', JSON.stringify(data.keyInfo));
+                    
+                    // Show Face ID Scanner
+                    await showFaceIDScanner(true, data.keyInfo);
+                } else {
+                    showError(data.error || 'Invalid access key');
+                    return false;
+                }
+            } catch (error) {
+                console.error(error);
+                showError('Connection failed. Please try again.');
+                return false;
+            }
+            return true;
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const keyInput = document.getElementById('keyInput');
+            const btn = document.getElementById('loginBtn');
+            const key = keyInput.value.trim();
+            
+            if (!key) { showError('Please enter a key'); return; }
+            
+            hideError();
+            document.getElementById('keyInfo').classList.add('hidden');
+            
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = `<div class="spinner"></div> Validating...`;
+            btn.disabled = true;
+            
+            const success = await login(key);
+            
+            if (!success) {
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+            }
+        });
+
+        document.getElementById('keyInput').addEventListener('input', () => {
+            hideError();
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!checkExistingAuth()) {
+                document.getElementById('keyInput').focus();
+            }
+        });
+    </script>
+</body>
+</html>
